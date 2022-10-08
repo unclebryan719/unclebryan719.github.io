@@ -16,41 +16,21 @@
   <meta name="author" content="UncleBryan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Hexo搭建博客官网 https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F;  安装 安装基础环境  Node.js和git   安装Hexo 1npm install -g hexo-cli  建站 1hexo init blog  目录结构如下   初始化博客内容 1234# 进入目录cd blog# npm install  开启服务 123456# 生成html等静态资源文件hexo ge">
+    <meta name="description" content="Mybatis笔记开启sql输出方案1：  将ibatis log4j运行级别调到DEBUG可以在控制台打印出ibatis运行的sql语句  添加如下语句 12345678###显示SQL语句部分log4j.logger.com.ibatis&#x3D;DEBUGlog4j.logger.com.ibatis.common.jdbc.SimpleDataSource&#x3D;DEBUGlog4j.logger.co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo搭建博客">
-<meta property="og:url" content="http://example.com/2022/10/06/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="Life is good">
+<meta property="og:url" content="http://example.com/2022/05/16/Middleware/mybatis/Mybatis%E5%BC%80%E5%90%AFSQL%E8%BE%93%E5%87%BA/index.html">
 <meta property="og:site_name" content="Life is good">
-<meta property="og:description" content="Hexo搭建博客官网 https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F;  安装 安装基础环境  Node.js和git   安装Hexo 1npm install -g hexo-cli  建站 1hexo init blog  目录结构如下   初始化博客内容 1234# 进入目录cd blog# npm install  开启服务 123456# 生成html等静态资源文件hexo ge">
+<meta property="og:description" content="Mybatis笔记开启sql输出方案1：  将ibatis log4j运行级别调到DEBUG可以在控制台打印出ibatis运行的sql语句  添加如下语句 12345678###显示SQL语句部分log4j.logger.com.ibatis&#x3D;DEBUGlog4j.logger.com.ibatis.common.jdbc.SimpleDataSource&#x3D;DEBUGlog4j.logger.co">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ue0d3bbnj30vg0c0jti.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ul097k1hj310c0u0jtn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ul5uerwmj31fj0u0tcs.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulacrda9j316u0jejup.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulbksgsfj31qi0e6tb8.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ullnp2s0j316009umxn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6uluh1shzj326y0mmjvd.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6um4h4mvnj31k208sgmi.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulyco78nj31e80jognp.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umofe7r5j31030qcq5y.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6um9ofdiwj316d0hwgnj.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umb5r6m0j318e07ewfc.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umqfxdz7j31fq0oxdkf.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6voj5d0lvj316l0u00xp.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vojn25xzj318m0u0aek.jpg">
-<meta property="article:published_time" content="2022-10-06T03:02:01.000Z">
-<meta property="article:modified_time" content="2022-10-06T10:15:07.055Z">
+<meta property="article:published_time" content="2022-05-16T15:44:30.440Z">
+<meta property="article:modified_time" content="2022-05-16T15:44:30.440Z">
 <meta property="article:author" content="UncleBryan">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="blog">
-<meta property="article:tag" content="tech">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ue0d3bbnj30vg0c0jti.jpg">
   
   
   
-  <title>Hexo搭建博客 - Life is good</title>
+  <title>Life is good</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -232,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hexo搭建博客"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -243,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-06 11:02" pubdate>
-          2022年10月6日 上午
+        <time datetime="2022-05-16 23:44" pubdate>
+          2022年5月16日 晚上
         </time>
       </span>
     
@@ -255,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          924 字
         
       </span>
     
@@ -266,7 +246,7 @@
         
         
         
-          12 分钟
+          8 分钟
         
       </span>
     
@@ -312,122 +292,24 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo搭建博客</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Hexo搭建博客"><a href="#Hexo搭建博客" class="headerlink" title="Hexo搭建博客"></a>Hexo搭建博客</h2><h2 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-</blockquote>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li><p>安装基础环境</p>
-<blockquote>
-<p>Node.js和git</p>
-</blockquote>
+                <h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><h4 id="开启sql输出"><a href="#开启sql输出" class="headerlink" title="开启sql输出"></a>开启sql输出</h4><p>方案1：</p>
+<ul>
+<li><p>将ibatis log4j运行级别调到DEBUG可以在控制台打印出ibatis运行的sql语句</p>
 </li>
-<li><p>安装Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>建站</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init blog<br></code></pre></td></tr></table></figure>
+<li><p>添加如下语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">###显示SQL语句部分</span><br>log4j.logger.com.ibatis=DEBUG<br>log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=DEBUG<br>log4j.logger.com.ibatis.common.jdbc.ScriptRunner=DEBUG<br>log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate=DEBUG<br>log4j.logger.Java.sql.Connection=DEBUG<br>log4j.logger.java.sql.Statement=DEBUG<br>log4j.logger.java.sql.PreparedStatement=DEBUG　<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>方案2：在mybatis.config.xml中增加如下配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">configuration</span></span><br><span class="hljs-meta"><span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//mybatis.org//DTD SQL Map Config 3.0//EN&quot;</span></span><br><span class="hljs-meta"><span class="hljs-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span><br> <br><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">settings</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">setting</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logImpl&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;STDOUT_LOGGING&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>目录结构如下</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ue0d3bbnj30vg0c0jti.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005141812611"></p>
-</li>
-<li><p>初始化博客内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入目录</span><br><span class="hljs-built_in">cd</span> blog<br><span class="hljs-comment"># </span><br>npm install<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>开启服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 生成html等静态资源文件</span><br>hexo generate <span class="hljs-comment"># 也可以使用缩写版本：hexo g</span><br><span class="hljs-comment"># 启动服务</span><br>hexo server	<span class="hljs-comment"># 也可以使用缩写版本：hexo s</span><br><span class="hljs-comment"># 后台启动</span><br><span class="hljs-built_in">nohup</span> hexo server &amp;<br></code></pre></td></tr></table></figure>
+<p>在SpringBoot中，修改application.yml文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mybatis:</span><br><span class="hljs-attr">configuration:</span><br><span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br><br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>PS. 生成资源文件时，不会覆盖重名的文件，比如图片banner</p>
-</blockquote>
-</li>
-<li><p>访问<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
-</li>
-</ol>
-<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><blockquote>
-<ol>
-<li><p>克隆NexT主题到themes文件夹</p>
-<p>git clone <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></p>
-</li>
-<li><p>下载Fluid主题解压到themes文件夹</p>
-<blockquote>
-<p>主题官网文档：<a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/">https://hexo.fluid-dev.com/docs/</a></p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">https://github.com/fluid-dev/hexo-theme-fluid</a></p>
-<p>PS. 使用fluid主题时，下载下来的文件夹名字是这样的<code>hexo-theme-fluid-1.9.3</code>，需要将其修改为<code>fluid</code>；</p>
-</li>
-</ol>
-</blockquote>
-<h4 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h4><blockquote>
-<p>修改<code>_config.yml</code></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># theme: next  # 指定主题</span><br>theme: fluid  <span class="hljs-comment"># 指定主题</span><br>language: zh-CN  <span class="hljs-comment"># 指定语言，会影响主题显示的语言，按需修改</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="创建「关于页」"><a href="#创建「关于页」" class="headerlink" title="创建「关于页」"></a>创建「关于页」</h3><blockquote>
-<p>首次使用主题的「关于页」需要手动创建：</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new page about<br></code></pre></td></tr></table></figure>
-
-<p>创建成功后，编辑博客目录下 <code>/source/about/index.md</code>，添加 <code>layout</code> 属性。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">about</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2020-02-23 19:20:33</span><br><span class="hljs-attr">layout:</span> <span class="hljs-string">about</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br><span class="hljs-string">这里写关于页的正文，支持</span> <span class="hljs-string">Markdown,</span> <span class="hljs-string">HTML</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new post 测试文章<br></code></pre></td></tr></table></figure>
-
-<h3 id="站点设置"><a href="#站点设置" class="headerlink" title="站点设置"></a>站点设置</h3><p>修改<code>_config.yml</code>即可</p>
-<h3 id="阅读量统计"><a href="#阅读量统计" class="headerlink" title="阅读量统计"></a>阅读量统计</h3><blockquote>
-<p>账号注册：<a target="_blank" rel="noopener" href="https://console.leancloud.cn/register">https://console.leancloud.cn/register</a></p>
-<p>需身份验证和邮箱验证</p>
-</blockquote>
-<p><strong>创建应用</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ul097k1hj310c0u0jtn.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005182005192"></p>
-<p><strong>获取应用appid</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ul5uerwmj31fj0u0tcs.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005182543636"></p>
-<p>打开主题目录 <code>themes\fluid</code>下的 <code>_config.yml</code> 文件，修改如下配置</p>
-<ol>
-<li>开启统计</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulacrda9j316u0jejup.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005183006359"></p>
-<ol start="2">
-<li>配置 <code>leancloud</code>的 <code>app_id</code> 、 <code>app_key</code>和<code>REST API 服务器地址</code></li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulbksgsfj31qi0e6tb8.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005183114159"></p>
-<ol start="3">
-<li>打开计数功能，统计来源改为 <code>leancloud</code></li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ullnp2s0j316009umxn.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005184055476"></p>
-<ol start="4">
-<li><h5 id="页面底部展示网站的-PV、UV-统计数"><a href="#页面底部展示网站的-PV、UV-统计数" class="headerlink" title="页面底部展示网站的 PV、UV 统计数"></a>页面底部展示网站的 PV、UV 统计数</h5></li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6uluh1shzj326y0mmjvd.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005184926645"></p>
-<h3 id="开启评论功能"><a href="#开启评论功能" class="headerlink" title="开启评论功能"></a>开启评论功能</h3><p>打开主题目录 <code>themes\fluid</code>下的 <code>_config.yml</code> 文件，修改如下配置</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6um4h4mvnj31k208sgmi.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005185903196"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6ulyco78nj31e80jognp.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005185309930"></p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>站点设置：根目录<code>_config.yml</code></p>
-<p>主题设置：根目录<code>_config.fluid.yml</code></p>
-<h2 id="在Github上托管"><a href="#在Github上托管" class="headerlink" title="在Github上托管"></a>在Github上托管</h2><h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umofe7r5j31030qcq5y.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005191814021"></p>
-<h3 id="创建token"><a href="#创建token" class="headerlink" title="创建token"></a>创建token</h3><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6um9ofdiwj316d0hwgnj.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005190403282"></p>
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umb5r6m0j318e07ewfc.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005190528703"></p>
-<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><blockquote>
-<p>部署后的渲染有点慢，不要着急，请耐心等待~</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g -d<br></code></pre></td></tr></table></figure>
-
-<h3 id="创建Readme文件"><a href="#创建Readme文件" class="headerlink" title="创建Readme文件"></a>创建Readme文件</h3><p>&#x3D;&#x3D;<strong>发布后记得添加Readme.md文件，否则网站无法访问</strong>&#x3D;&#x3D;</p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6umqfxdz7j31fq0oxdkf.jpg" srcset="/img/loading.gif" lazyload alt="image-20221005192010048"></p>
-<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><p><a target="_blank" rel="noopener" href="https://unclebryan719.github.io/">https://unclebryan719.github.io/</a></p>
-<h3 id="域名映射"><a href="#域名映射" class="headerlink" title="域名映射"></a>域名映射</h3><blockquote>
-<p>直接在设置页面配置域名即可，我没有配置域名解析也成功了</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg" srcset="/img/loading.gif" lazyload alt="image-20221006162117603"></p>
-<blockquote>
-<p>配置后会生成一个CNAME的文件，记得把它copy到public文件夹，否则，每次自定义域名都会被清除</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6voj5d0lvj316l0u00xp.jpg" srcset="/img/loading.gif" lazyload alt="image-20221006170751802"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vojn25xzj318m0u0aek.jpg" srcset="/img/loading.gif" lazyload alt="image-20221006170823489"></p>
 
                 
               </div>
@@ -436,38 +318,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/tech/" class="category-chain-item">tech</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/hexo/">#hexo</a>
-      
-        <a href="/tags/blog/">#blog</a>
-      
-        <a href="/tags/tech/">#tech</a>
-      
-    </div>
   
 </div>
 
@@ -477,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hexo搭建博客</div>
-      <div>http://example.com/2022/10/06/Hexo搭建博客/</div>
+      <div></div>
+      <div>http://example.com/2022/05/16/Middleware/mybatis/Mybatis开启SQL输出/</div>
     </div>
     <div class="license-meta">
       
@@ -490,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月6日</div>
+          <div>2022年5月16日</div>
         </div>
       
       
@@ -522,12 +372,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/05/16/Middleware/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%B3%BB%E7%BB%9F%E4%B8%8EJava%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9E%E8%B7%B5/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/29/ElasticSearch/ElasticSearch/" title="ElasticSearch">
-                        <span class="hidden-mobile">ElasticSearch</span>
+                      <a href="/2022/05/16/Middleware/DUBBO/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
