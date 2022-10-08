@@ -33,6 +33,33 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2022/09/29/ES/ElasticSearch/"/>
+    <url>/2022/09/29/ES/ElasticSearch/</url>
+    
+    <content type="html"><![CDATA[<h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><h4 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h4><blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/index.html">https://www.elastic.co/guide/en/elasticsearch/reference/index.html</a></p></blockquote><h4 id="安装ES"><a href="#安装ES" class="headerlink" title="安装ES"></a>安装ES</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker network create elastic<br>docker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.6<br>docker run --name es01-test --net elastic -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 -e <span class="hljs-string">&quot;discovery.type=single-node&quot;</span> docker.elastic.co/elasticsearch/elasticsearch:7.17.6<br></code></pre></td></tr></table></figure><h4 id="安装Kibana"><a href="#安装Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull docker.elastic.co/kibana/kibana:7.17.6<br>docker run --name kib01-test --net elastic -p 127.0.0.1:5601:5601 -e <span class="hljs-string">&quot;ELASTICSEARCH_HOSTS=http://es01-test:9200&quot;</span> docker.elastic.co/kibana/kibana:7.17.6<br></code></pre></td></tr></table></figure><h4 id="访问Kibana"><a href="#访问Kibana" class="headerlink" title="访问Kibana"></a>访问Kibana</h4><blockquote><p><a href="http://localhost:5601/">http://localhost:5601</a></p></blockquote><h4 id="Search-Api"><a href="#Search-Api" class="headerlink" title="Search Api"></a>Search Api</h4><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/search-search.html">https://www.elastic.co/guide/en/elasticsearch/reference/7.17/search-search.html</a></p><h4 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h4><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-dsl.html">https://www.elastic.co/guide/en/elasticsearch/reference/7.17/query-dsl.html</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>es</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tech</tag>
+      
+      <tag>es</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>DDD领域驱动设计</title>
     <link href="/2022/06/06/DDD/DDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
     <url>/2022/06/06/DDD/DDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/</url>
