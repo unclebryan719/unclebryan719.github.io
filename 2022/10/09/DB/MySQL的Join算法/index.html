@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/a5/32/a513d07ebaf1ae044d44391c89bc6432.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/31/7e/31d85666542b9cb0b47a447a8593a47e.jpg">
 <meta property="article:published_time" content="2022-10-09T11:47:44.653Z">
-<meta property="article:modified_time" content="2022-10-10T05:42:40.274Z">
+<meta property="article:modified_time" content="2022-10-10T05:45:47.506Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -372,7 +372,7 @@
 <p>NLJ算法优化后的BKA算法的流程。</p>
 <p><img src="https://static001.geekbang.org/resource/image/31/7e/31d85666542b9cb0b47a447a8593a47e.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>图5 Batched Key Acess流程</p>
-<p>图中，我在join_buffer中放入的数据是P1<del>P100，表示的是只会取查询需要的字段。当然，如果join buffer放不下P1</del>P100的所有数据，就会把这100行数据分成多段执行上图的流程。</p>
+<p>图中，我在join_buffer中放入的数据是P1到P100，表示的是只会取查询需要的字段。当然，如果join buffer放不下P1到P100的所有数据，就会把这100行数据分成多段执行上图的流程。</p>
 <p>那么，这个BKA算法到底要怎么启用呢？</p>
 <p>如果要使用BKA优化算法的话，你需要在执行SQL语句之前，先设置</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> <span class="hljs-attribute">optimizer_switch</span>=<span class="hljs-string">&#x27;mrr=on,mrr_cost_based=off,batched_key_access=on&#x27;</span>;<br></code></pre></td></tr></table></figure>
