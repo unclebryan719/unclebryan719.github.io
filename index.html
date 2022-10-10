@@ -250,7 +250,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/10/09/DB/MySQL%E7%9A%84Join%E7%AE%97%E6%B3%95/" target="_self">
         <div>
-          Index Nested-Loop Join1select * from t1 straight_join t2 on (t1.a=t2.a);   图1 使用索引字段join的 explain结果 可以看到，在这条语句里，被驱动表t2的字段a上有索引，join过程用上了这个索引，因此这个语句的执行流程是这样的：  从表t1中读入一行数据 R； 从数据行R中，取出a字段到表t2里去查找； 取出表t
+          MySQL的Join算法Index Nested-Loop Join1select * from t1 straight_join t2 on (t1.a=t2.a);   图1 使用索引字段join的 explain结果 可以看到，在这条语句里，被驱动表t2的字段a上有索引，join过程用上了这个索引，因此这个语句的执行流程是这样的：  从表t1中读入一行数据 R； 从数据行R中，取出a字段到表
         </div>
       </a>
 
