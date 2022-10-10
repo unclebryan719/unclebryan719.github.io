@@ -26,12 +26,12 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h706tg38m6j30xs0g43zt.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70na4pfvhj32660omaes.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70nb5qisgj31p60r4q5i.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg">
 <meta property="article:published_time" content="2022-10-10T06:06:03.583Z">
-<meta property="article:modified_time" content="2022-10-10T16:25:06.332Z">
+<meta property="article:modified_time" content="2022-10-10T16:36:54.414Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Mysql">
 <meta property="article:tag" content="Innodb">
@@ -340,7 +340,25 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 缓冲池的总大小 </span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_size&#x27;</span>;<br><span class="hljs-comment">-- 缓冲池的总大小 单位是byte   -- 134217728/1024/1024=128M</span><br><span class="hljs-comment">-- 缓冲池实例个数</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_instances&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010163151463"></p>
-<h3 id="LRU-List、Free-List和Flush-List"><a href="#LRU-List、Free-List和Flush-List" class="headerlink" title="LRU List、Free List和Flush List"></a>LRU List、Free List和Flush List</h3><h4 id="Innodb读取Page页"><a href="#Innodb读取Page页" class="headerlink" title="Innodb读取Page页"></a>Innodb读取Page页</h4><p>当InnoDB读取Page时，首先会从当前Buffer Pool Instance的page_hash查找，并分为三种情况来处理：</p>
+<h4 id="缓冲池状态信息"><a href="#缓冲池状态信息" class="headerlink" title="缓冲池状态信息"></a>缓冲池状态信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看缓冲池的状态</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_POOL_STATS;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010165055392"></p>
+<ul>
+<li>POOL_SIZE：表示当前缓冲池的页数为8191，8191*16kb&#x2F;1024≈128M</li>
+<li>FREE_BUFFERS：Free List空闲列表剩余页数</li>
+<li>DATABASE_PAGES：LRU所管理的页数</li>
+<li>OLD_DATABASE_PAGES：LRU列表OLD区数据页数</li>
+<li>PAGES_MADE_YOUNG：当页从LRU列表的old部分加入到new部分时，称此时发生的操作为page made young</li>
+<li>PAGES_NOT_MADE_YOUNG：因为innodb_old_blocks_time的<font color=red><strong>变更</strong></font>而导致页没有从old部分移动到new部分的操作称为page not made young。</li>
+<li>HIT_RATE：缓冲池命中率，通常该值不应该小于95%</li>
+</ul>
+<blockquote>
+<p>FREE_BUFFERS+DATABASE_PAGES&lt;&#x3D;POOL_SIZE，因为缓冲池中的页还可能会被分配给自适应哈希索引、Lock信息、Insert Buffer等页，而这部分页不需要LRU算法进行维护，因此不存在于LRU列表中。</p>
+</blockquote>
+<h3 id="LRU-List、Free-List和Flush-List"><a href="#LRU-List、Free-List和Flush-List" class="headerlink" title="LRU List、Free List和Flush List"></a>LRU List、Free List和Flush List</h3><h4 id="Innodb读取Page页"><a href="#Innodb读取Page页" class="headerlink" title="Innodb读取Page页"></a>Innodb读取Page页</h4><blockquote>
+<p>在每个Buffer Pool Instance中都会包含一个独立的Page_hash，其作用主要是为了避免对LRU List的全链表扫描，通过使用space_id和page_no就能快速找到已经被读入Buffer Pool的Page。</p>
+</blockquote>
+<p>当InnoDB读取Page时，首先会从当前Buffer Pool Instance的page_hash查找，并分为三种情况来处理：</p>
 <ol>
 <li><font color=red>如果在page_hash找到，即Page在LRU List中，则会判断Page是在Old区还是Young区，如果是在Old区，在读取完Page后会把它添加到Young区的链表头部，发生的操作为page made young</font></li>
 <li><font color=red>如果在page_hash找到，并且Page在Young区，需要判断Page所在Young区的位置，只有Page处于Young区总长度大约1&#x2F;4的位置之后，才会将其添加到Young区的链表头部</font></li>
@@ -368,24 +386,6 @@
 <p> Innodb存储引擎会将脏页的控制块放入一个flush list的链表中，<font color=red>注意，这里链表中不是真实的缓存数据页，而是数据页对应的控制块。</font></p>
 </blockquote>
 <p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg" srcset="/img/loading.gif" lazyload alt="bh1ocl8tjo"></p>
-<h4 id="Page-hash"><a href="#Page-hash" class="headerlink" title="Page_hash"></a>Page_hash</h4><blockquote>
-<p>在每个Buffer Pool Instance中都会包含一个独立的Page_hash，其作用主要是为了避免对LRU List的全链表扫描，通过使用space_id和page_no就能快速找到已经被读入Buffer Pool的Page。</p>
-</blockquote>
-<h4 id="缓冲池状态"><a href="#缓冲池状态" class="headerlink" title="缓冲池状态"></a>缓冲池状态</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看缓冲池的状态</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_POOL_STATS;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010165055392"></p>
-<ul>
-<li>POOL_SIZE：表示当前缓冲池的页数为8191，8191*16kb&#x2F;1024≈128M</li>
-<li>FREE_BUFFERS：Free List空闲列表剩余页数</li>
-<li>DATABASE_PAGES：LRU所管理的页数</li>
-<li>OLD_DATABASE_PAGES：LRU列表OLD区数据页数</li>
-<li>PAGES_MADE_YOUNG：当页从LRU列表的old部分加入到new部分时，称此时发生的操作为page made young</li>
-<li>PAGES_NOT_MADE_YOUNG：因为innodb_old_blocks_time的<font color=red><strong>变更</strong></font>而导致页没有从old部分移动到new部分的操作称为page not made young。</li>
-<li>HIT_RATE：缓冲池命中率，通常该值不应该小于95%</li>
-</ul>
-<blockquote>
-<p>FREE_BUFFERS+DATABASE_PAGES&lt;&#x3D;POOL_SIZE，因为缓冲池中的页还可能会被分配给自适应哈希索引、Lock信息、Insert Buffer等页，而这部分页不需要LRU算法进行维护，因此不存在于LRU列表中。</p>
-</blockquote>
 <h3 id="重做日志缓冲"><a href="#重做日志缓冲" class="headerlink" title="重做日志缓冲"></a>重做日志缓冲</h3><blockquote>
 <p>重做日志缓冲（redo log buffer）</p>
 <p>InnoDB存储引擎首先将重做日志信息先放入到这个缓冲区，然后按一定频率将其刷新到重做日志文件。重做日志缓冲一般不需要设置得很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。该值可由配置参数<code>innodb_log_buffer_size</code>控制，默认为8MB</p>
