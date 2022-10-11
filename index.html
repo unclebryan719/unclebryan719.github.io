@@ -243,14 +243,14 @@
       <h1 class="index-header">
         
         <a href="/2022/10/11/DB/MySQL%20binlog/" target="_self">
-          
+          MySQL binlog与redo log
         </a>
       </h1>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/10/11/DB/MySQL%20binlog/" target="_self">
         <div>
-          MySQL binlog 12345678-- 查看binlog格式show GLOBAL VARIABLES like &#x27;binlog_format%&#x27;;-- 查看binlog配置信息show variables like &#x27;log_%&#x27;;-- 查看当前正在写入的binlog文件名show master status;-- 查看指定binlog文件的内容s
+          MySQL binlog与redo logbinlog binlog存储的是逻辑日志，即每次执行的SQL语句 binlog（归档日志）属于Server层也有自己的日志 Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理 可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态  12345678-- 查看binlog格式show GLOB
         </div>
       </a>
 
@@ -264,6 +264,34 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Mysql/">#Mysql</a>
+            
+          </div>
         
       </div>
     </article>

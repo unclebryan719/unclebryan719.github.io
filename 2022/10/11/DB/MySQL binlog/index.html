@@ -16,25 +16,29 @@
   <meta name="author" content="UncleBryan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MySQL binlog 12345678-- 查看binlog格式show GLOBAL VARIABLES like &amp;#x27;binlog_format%&amp;#x27;;-- 查看binlog配置信息show variables like &amp;#x27;log_%&amp;#x27;;-- 查看当前正在写入的binlog文件名show master status;-- 查看指定binlog文件的内容s">
+    <meta name="description" content="MySQL binlog与redo logbinlog binlog存储的是逻辑日志，即每次执行的SQL语句 binlog（归档日志）属于Server层也有自己的日志 Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理 可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态  12345678-- 查看binlog格式show GLOB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Life is good">
+<meta property="og:title" content="MySQL binlog与redo log">
 <meta property="og:url" content="http://example.com/2022/10/11/DB/MySQL%20binlog/index.html">
 <meta property="og:site_name" content="Life is good">
-<meta property="og:description" content="MySQL binlog 12345678-- 查看binlog格式show GLOBAL VARIABLES like &amp;#x27;binlog_format%&amp;#x27;;-- 查看binlog配置信息show variables like &amp;#x27;log_%&amp;#x27;;-- 查看当前正在写入的binlog文件名show master status;-- 查看指定binlog文件的内容s">
+<meta property="og:description" content="MySQL binlog与redo logbinlog binlog存储的是逻辑日志，即每次执行的SQL语句 binlog（归档日志）属于Server层也有自己的日志 Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理 可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态  12345678-- 查看binlog格式show GLOB">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h71b6394hdj328e05cabm.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h71ba7t9t9j31ag0aqgn4.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h71bgvkjgrj31a00bmtak.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h71byi10qkj31tr0u0ai2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6ekqaac6rj20vq0i8mx8.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6ekqe5rkfj20u013zwgx.jpg">
 <meta property="article:published_time" content="2022-10-11T05:52:48.371Z">
-<meta property="article:modified_time" content="2022-10-11T06:20:21.410Z">
+<meta property="article:modified_time" content="2022-10-11T08:42:02.462Z">
 <meta property="article:author" content="UncleBryan">
+<meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h71b6394hdj328e05cabm.jpg">
   
   
   
-  <title>Life is good</title>
+  <title>MySQL binlog与redo log - Life is good</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +220,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="MySQL binlog与redo log"></span>
           
         </div>
 
@@ -239,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          680 字
+          1.9k 字
         
       </span>
     
@@ -250,7 +254,7 @@
         
         
         
-          6 分钟
+          16 分钟
         
       </span>
     
@@ -296,12 +300,17 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">MySQL binlog与redo log</h1>
             
             
               <div class="markdown-body">
                 
-                <p>MySQL binlog</p>
+                <h1 id="MySQL-binlog与redo-log"><a href="#MySQL-binlog与redo-log" class="headerlink" title="MySQL binlog与redo log"></a>MySQL binlog与redo log</h1><h2 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h2><blockquote>
+<p>binlog存储的是逻辑日志，即每次执行的SQL语句</p>
+<p>binlog（归档日志）属于Server层也有自己的日志</p>
+<p>Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理</p>
+<p>可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态</p>
+</blockquote>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看binlog格式</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;binlog_format%&#x27;</span>;<br><span class="hljs-comment">-- 查看binlog配置信息</span><br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;log_%&#x27;</span>;<br><span class="hljs-comment">-- 查看当前正在写入的binlog文件名</span><br><span class="hljs-keyword">show</span> master status;<br><span class="hljs-comment">-- 查看指定binlog文件的内容</span><br><span class="hljs-keyword">show</span> binlog events <span class="hljs-keyword">in</span> <span class="hljs-string">&#x27;mysql-bin.000034&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 
@@ -315,12 +324,42 @@
 
 <p>下图为本地binlog文件，从文件大小看binlog应该是固定大小的文件，binlog30&#x2F;31文件大小都写满了104.9M，032没有写满就创建了033文件，是因为我修改了binlog的格式为Statement，不同格式的binlog不能存储在同一个文件</p>
 <p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71b6394hdj328e05cabm.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011135857905"></p>
-<p>Statement格式的binlog如下图</p>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71ba7t9t9j31ag0aqgn4.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011140252810"></p>
-<p>ROW格式的binlog如下图</p>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71bgvkjgrj31a00bmtak.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011140917202"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo /usr/local/mysql-8.0.26-macos11-x86_64/bin/mysqlbinlog -vv --base64-output=decode-rows  /usr/local/mysql-8.0.26-macos11-x86_64/data/mysql-bin.000034 &gt; mysql-bin.000034.txt<br></code></pre></td></tr></table></figure>
+<h4 id="Statement格式的binlog如下图"><a href="#Statement格式的binlog如下图" class="headerlink" title="Statement格式的binlog如下图"></a>Statement格式的binlog如下图</h4><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71ba7t9t9j31ag0aqgn4.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011140252810"></p>
+<h4 id="ROW格式的binlog如下图"><a href="#ROW格式的binlog如下图" class="headerlink" title="ROW格式的binlog如下图"></a>ROW格式的binlog如下图</h4><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71bgvkjgrj31a00bmtak.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011140917202"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 对ROW格式的binlog进行格式化</span><br>sudo /usr/local/mysql-8.0.26-macos11-x86_64/bin/mysqlbinlog -vv --base64-output=decode-rows  /usr/local/mysql-8.0.26-macos11-x86_64/data/mysql-bin.000034 &gt; mysql-bin.000034.txt<br></code></pre></td></tr></table></figure>
 
+<p>格式化后如下图</p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h71byi10qkj31tr0u0ai2.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011142616290"></p>
+<h2 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h2><blockquote>
+<p>redo log主要作用是崩溃恢复。</p>
+<p>redo log是InnoDB引擎特有的日志</p>
+<p>为了避免发生数据丢失的问题，当前事务数据库系统普遍都采用了Write Ahead Log策略，即当事务提交时，先写重做日志，再修改页。当由于发生宕机而导致数据丢失时，通过重做日志来完成数据的恢复。这也是事务ACID中D（Durability持久性）的要求。</p>
+<p>Write Ahead Log利用的是循环写文件如下图</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6ekqaac6rj20vq0i8mx8.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="bin-log-VS-redo-log"><a href="#bin-log-VS-redo-log" class="headerlink" title="bin log VS redo log"></a>bin log VS redo log</h2><p><strong>区别</strong></p>
+<ol>
+<li>redo log是InnoDB引擎特有的；binlog是MySQL的Server层实现的，所有引擎都可以使用。</li>
+<li>redo log是物理日志，记录的是“在某个数据页上做了什么修改”；binlog是逻辑日志，记录的是这个语句的原始逻辑，比如“给ID&#x3D;2这一行的c字段加1 ”。</li>
+<li>redo log是循环写的，空间固定会用完；binlog是可以追加写入的。“追加写”是指binlog文件写到一定大小后会切换到下一个，并不会覆盖以前的日志。</li>
+</ol>
+<h2 id="一条更新语句的执行过程"><a href="#一条更新语句的执行过程" class="headerlink" title="一条更新语句的执行过程"></a>一条更新语句的执行过程</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> T <span class="hljs-keyword">set</span> c<span class="hljs-operator">=</span>c<span class="hljs-operator">+</span><span class="hljs-number">1</span> <span class="hljs-keyword">where</span> ID<span class="hljs-operator">=</span><span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<p>执行器和InnoDB引擎在执行这个简单的update语句时的内部流程。</p>
+<ol>
+<li>执行器先找引擎取ID&#x3D;2这一行。ID是主键，引擎直接用树搜索找到这一行。如果ID&#x3D;2这一行所在的数据页本来就在内存中，就直接返回给执行器；否则，需要先从磁盘读入内存，然后再返回。</li>
+<li>执行器拿到引擎给的行数据，把这个值加上1，比如原来是N，现在就是N+1，得到新的一行数据，再调用引擎接口写入这行新数据。</li>
+<li>引擎将这行新数据更新到内存中，同时将这个更新操作记录到redo log里面，此时redo log处于prepare状态。然后告知执行器执行完成了，随时可以提交事务。</li>
+<li>执行器生成这个操作的binlog，并把binlog写入磁盘。</li>
+<li>执行器调用引擎的提交事务接口，引擎把刚刚写入的redo log改成提交（commit）状态，更新完成。</li>
+</ol>
+<p>这里我给出这个update语句的执行流程图，图中浅色框表示是在InnoDB内部执行的，深色框表示是在执行器中执行的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6ekqe5rkfj20u013zwgx.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>update语句执行流程</p>
+<p>你可能注意到了，最后三步看上去有点“绕”，将redo log的写入拆成了两个步骤：prepare和commit，这就是”两阶段提交”。</p>
+<h2 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h2><blockquote>
+<p>如果不使用“两阶段提交”，那么数据库的状态就有可能和用它的日志恢复出来的库的状态不一致。</p>
+</blockquote>
 
                 
               </div>
@@ -329,6 +368,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mysql/">#Mysql</a>
+      
+    </div>
   
 </div>
 
@@ -338,7 +405,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>MySQL binlog与redo log</div>
       <div>http://example.com/2022/10/11/DB/MySQL binlog/</div>
     </div>
     <div class="license-meta">
