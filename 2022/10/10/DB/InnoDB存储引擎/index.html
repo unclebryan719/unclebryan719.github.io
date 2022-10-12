@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg">
 <meta property="article:published_time" content="2022-10-10T06:06:03.583Z">
-<meta property="article:modified_time" content="2022-10-11T14:38:32.115Z">
+<meta property="article:modified_time" content="2022-10-12T03:44:48.757Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Mysql">
 <meta property="article:tag" content="Innodb">
@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          7k 字
         
       </span>
     
@@ -257,7 +257,7 @@
         
         
         
-          49 分钟
+          59 分钟
         
       </span>
     
@@ -406,8 +406,33 @@
 <p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011221835132"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 双写<br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">GLOBAL</span> STATUS <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_dblwr%&#x27;</span>;<br>innodb_dblwr_pages_written 写入的页数<br>innodb_dblwr_writes 写入次数<br></code></pre></td></tr></table></figure>
 
+<h4 id="自适应哈希"><a href="#自适应哈希" class="headerlink" title="自适应哈希"></a>自适应哈希</h4><blockquote>
+<p>（Adaptive Hash Index，AHI）是通过缓冲池的B+树页构造而来，因此建立的速度很快，而且不需要对整张表构建哈希索引。InnoDB存储引擎会自动根据访问的频率和模式来自动地为某些热点页建立哈希索引。</p>
+<p><strong>自适应hash要求比较苛刻，个人觉得用处不大；用redis不香吗</strong></p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查询是否开启自适应哈希</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_adaptive_hash_index&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
 
+
+<h4 id="启动、关闭与恢复"><a href="#启动、关闭与恢复" class="headerlink" title="启动、关闭与恢复"></a>启动、关闭与恢复</h4><blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_fast_shutdown&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>0表示在MySQL数据库关闭时，InnoDB需要完成所有的full purge和merge insert buffer，并且将所有的脏页刷新回磁盘。这需要一些时间，有时甚至需要几个小时来完成。如果在进行InnoDB升级时，必须将这个参数调为0，然后再关闭数据库。</p>
+<p>1是参数innodb_fast_shutdown的默认值，表示不需要完成上述的full purge和merge insert buffer操作，但是在缓冲池中的一些数据脏页还是会刷新回磁盘。</p>
+<p>2表示不完成full purge和merge insert buffer操作，也不将缓冲池中的数据脏页写回磁盘，而是将日志都写入日志文件。这样不会有任何事务的丢失，但是下次MySQL数据库启动时，会进行恢复操作（recovery）。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_force_recovery&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>该参数值默认为0，代表当发生需要恢复时，进行所有的恢复操作;</p>
+<p>1(SRV_FORCE_IGNORE_CORRUPT)：忽略检查到的corrupt页。</p>
+<p>2(SRV_FORCE_NO_BACKGROUND)：阻止Master Thread线程的运行，如Master Thread线程需要进行full purge操作，而这会导致crash。</p>
+<p>3(SRV_FORCE_NO_TRX_UNDO)：不进行事务的回滚操作。</p>
+<p>4(SRV_FORCE_NO_IBUF_MERGE)：不进行插入缓冲的合并操作。</p>
+<p>5(SRV_FORCE_NO_UNDO_LOG_SCAN)：不查看撤销日志（Undo Log），InnoDB存储引擎会将未提交的事务视为已提交。</p>
+<p>6(SRV_FORCE_NO_LOG_REDO)：不进行前滚的操作。</p>
+<p>需要注意的是，在设置了参数innodb_force_recovery大于0后，用户可以对表进行select、create和drop操作，但insert、update和delete这类DML操作是不允许的。</p>
+</blockquote>
 <h3 id="重做日志缓冲"><a href="#重做日志缓冲" class="headerlink" title="重做日志缓冲"></a>重做日志缓冲</h3><blockquote>
 <p>重做日志缓冲（redo log buffer）</p>
 <p>InnoDB存储引擎首先将重做日志信息先放入到这个缓冲区，然后按一定频率将其刷新到重做日志文件。重做日志缓冲一般不需要设置得很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。该值可由配置参数<code>innodb_log_buffer_size</code>控制，默认为8MB</p>
