@@ -1,0 +1,1042 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="UncleBryan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="RocketMq学习笔记Quick Start12345&gt; unzip rocketmq-all-4.9.4-source-release.zip &gt; cd rocketmq-all-4.9.4-source-release&#x2F; # 改完配置需要重新编译  &gt; mvn -Prelease-all -DskipTests clean install -U &gt; cd distri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RocketMq学习笔记">
+<meta property="og:url" content="http://example.com/2022/07/12/Middleware/MessageQueue/RocketMq%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Life is good">
+<meta property="og:description" content="RocketMq学习笔记Quick Start12345&gt; unzip rocketmq-all-4.9.4-source-release.zip &gt; cd rocketmq-all-4.9.4-source-release&#x2F; # 改完配置需要重新编译  &gt; mvn -Prelease-all -DskipTests clean install -U &gt; cd distri">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59wbk1b8yj21820l0ab0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59wzdjz5sj21p10u0tbz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59x8t1s6fj21670u076m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59xflsnvfj21g90u0tbm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59xo9j383j211l0u076a.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yar6xlpj21ji0leacd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59ygldk4qj20wc0o83zn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yiqjbz4j20w80o0ta0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yqme13aj20z20oamyt.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59z9j6h3uj21aw0ismyq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59zdvgml7j20xu0fswgf.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59zgstq62j20y40fodhm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6841gcjg2j20v80seq6b.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j08mwh0zj211a0f1tab.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j0o7o5eaj20nz0e0dg6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j1a0oo87j21350g6jtb.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j54b0u61j20vq0owwhr.jpg">
+<meta property="article:published_time" content="2022-07-12T05:46:58.373Z">
+<meta property="article:modified_time" content="2022-10-12T15:37:47.748Z">
+<meta property="article:author" content="UncleBryan">
+<meta property="article:tag" content="RocketMq">
+<meta property="article:tag" content="Middleware">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h59wbk1b8yj21820l0ab0.jpg">
+  
+  
+  
+  <title>RocketMq学习笔记 - Life is good</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","app_key":"pfnSBUqV0Q7IFon0bcBvyUZS","server_url":"https://0alowe3l.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Bryan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RocketMq学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-12 13:46" pubdate>
+          2022年7月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RocketMq学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="RocketMq学习笔记"><a href="#RocketMq学习笔记" class="headerlink" title="RocketMq学习笔记"></a>RocketMq学习笔记</h2><h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">unzip rocketmq-all-4.9.4-source-release.zip</span><br><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash"><span class="hljs-built_in">cd</span> rocketmq-all-4.9.4-source-release/</span><br><span class="hljs-meta prompt_"> # </span><span class="language-bash">改完配置需要重新编译</span> <br><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">mvn -Prelease-all -DskipTests clean install -U</span><br><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash"><span class="hljs-built_in">cd</span> distribution/target/rocketmq-4.9.4/rocketmq-4.9.4</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Start-Name-Server"><a href="#Start-Name-Server" class="headerlink" title="Start Name Server"></a>Start Name Server</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash"><span class="hljs-built_in">nohup</span> sh bin/mqnamesrv &amp;</span><br><span class="hljs-meta prompt_">  &gt; </span><span class="language-bash"><span class="hljs-built_in">tail</span> -f ~/logs/rocketmqlogs/namesrv.log</span><br>  The Name Server boot success...<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Start-Broker"><a href="#Start-Broker" class="headerlink" title="Start Broker"></a>Start Broker</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash"><span class="hljs-built_in">nohup</span> sh bin/mqbroker -n localhost:9876 &amp;</span><br><span class="hljs-meta prompt_">  &gt; </span><span class="language-bash"><span class="hljs-built_in">tail</span> -f ~/logs/rocketmqlogs/broker.log</span> <br>  The broker[%s, 172.30.30.233:10911] boot success...<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Send-amp-Receive-Messages"><a href="#Send-amp-Receive-Messages" class="headerlink" title="Send &amp; Receive Messages"></a>Send &amp; Receive Messages</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash"><span class="hljs-built_in">export</span> NAMESRV_ADDR=localhost:9876</span><br><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">sh bin/tools.sh org.apache.rocketmq.example.quickstart.Producer</span><br> SendResult [sendStatus=SEND_OK, msgId= ...<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"> &gt; </span><span class="language-bash">sh bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer</span><br><span class="hljs-meta prompt_"> ConsumeMessageThread_%</span><span class="language-bash">d Receive New Messages: [MessageExt...</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Shutdown-Servers"><a href="#Shutdown-Servers" class="headerlink" title="Shutdown Servers"></a>Shutdown Servers</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">sh bin/mqshutdown broker</span><br>The mqbroker(36695) is running...<br>Send shutdown request to mqbroker(36695) OK<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">sh bin/mqshutdown namesrv</span><br>The mqnamesrv(36664) is running...<br>Send shutdown request to mqnamesrv(36664) OK<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="RocketMq-Console"><a href="#RocketMq-Console" class="headerlink" title="RocketMq Console"></a>RocketMq Console</h3><p>已更名为rocketmq-dashboard</p>
+<h4 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">从GitHub上面拉取代码</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/apache/rocketmq-dashboard.git</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cd</span> rocketmq-dashboard</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">maven打包</span><br>mvn clean package -Dmaven.test.skip=true<br>java -jar target/rocketmq-dashboard-1.0.1-SNAPSHOT.jar<br><br>or<br><br>mvn spring-boot:run<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><blockquote>
+<p><code>rocketmq-console/src/main/resources/application.properties</code></p>
+</blockquote>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">server.address</span>=<span class="hljs-string">0.0.0.0</span><br><span class="hljs-comment"># server.port=8080</span><br><span class="hljs-comment"># 我这里将8080改成19876了</span><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">19876</span><br><span class="hljs-comment"># …… </span><br><span class="hljs-comment"># 中间省略</span><br><span class="hljs-comment"># ………</span><br><span class="hljs-comment"># 这里是指定Nameserv,也可以不指定，在前端控制台进行指定</span><br><span class="hljs-attr">rocketmq.config.namesrvAddr</span>=<span class="hljs-string">localhost:9876</span><br><span class="hljs-comment"># …… </span><br><span class="hljs-comment"># 后续省略</span><br><span class="hljs-comment"># ………</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="RocketMq启动"><a href="#RocketMq启动" class="headerlink" title="RocketMq启动"></a>RocketMq启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs bash">NettyServerConfig默认端口:10911<br>NameServer默认端口:9876<br><br><span class="hljs-comment"># rocketmq 启动路径</span><br>  /xdfapp/server/rocket/rocketmq-all-4.3.0/distribution/target/apache-rocketmq/bin<br><span class="hljs-comment"># 日志路径</span><br>  /root/logs/rocketmqlogs<br><br><span class="hljs-comment"># 启动NameServer</span><br><span class="hljs-built_in">nohup</span> ./mqnamesrv &amp;<br><span class="hljs-comment"># 启动Broker</span><br><span class="hljs-built_in">nohup</span> ./mqbroker -c ../conf/broker.conf &amp;<br><br><br><span class="hljs-comment"># broker.conf配置</span><br>brokerClusterName = DefaultCluster<br>brokerName = broker-a<br>brokerId = 0<br>deleteWhen = 04<br>fileReservedTime = 48<br>brokerRole = ASYNC_MASTER<br>flushDiskType = ASYNC_FLUSH<br>namesrvAddr=10.60.0.65:9876<br><span class="hljs-comment"># brokerIP1=10.60.0.65</span><br>autoCreateTopicEnable=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="hljs-comment"># contributor license agreements.  See the NOTICE file distributed with</span><br><span class="hljs-comment"># this work for additional information regarding copyright ownership.</span><br><span class="hljs-comment"># The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="hljs-comment"># (the &quot;License&quot;); you may not use this file except in compliance with</span><br><span class="hljs-comment"># the License.  You may obtain a copy of the License at</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment">#  Unless required by applicable law or agreed to in writing, software</span><br><span class="hljs-comment">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="hljs-comment">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="hljs-comment">#  See the License for the specific language governing permissions and</span><br><span class="hljs-comment">#  limitations under the License.</span><br><span class="hljs-attr">​</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 所属集群名字</span><br><span class="hljs-attr">brokerClusterName</span>=<span class="hljs-string">DefaultCluster</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># broker 名字，注意此处不同的配置文件填写的不一样，如果在 broker-a.properties 使用: broker-a,</span><br><span class="hljs-comment"># 在 broker-b.properties 使用: broker-b</span><br><span class="hljs-attr">brokerName</span>=<span class="hljs-string">broker-a</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 0 表示 Master，&gt; 0 表示 Slave</span><br><span class="hljs-attr">brokerId</span>=<span class="hljs-string">0</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># nameServer地址，分号分割</span><br><span class="hljs-comment"># namesrvAddr=rocketmq-nameserver1:9876;rocketmq-nameserver2:9876</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 启动IP,如果 docker 报 com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to &lt;192.168.0.120:10909&gt; failed</span><br><span class="hljs-comment"># 解决方式1 加上一句 producer.setVipChannelEnabled(false);，解决方式2 brokerIP1 设置宿主机IP，不要使用docker 内部IP</span><br><span class="hljs-attr">brokerIP1</span>=<span class="hljs-string">192.168.200.129</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 在发送消息时，自动创建服务器不存在的topic，默认创建的队列数</span><br><span class="hljs-attr">defaultTopicQueueNums</span>=<span class="hljs-string">4</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 是否允许 Broker 自动创建 Topic，建议线下开启，线上关闭 </span><br><span class="hljs-attr">autoCreateTopicEnable</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 是否允许 Broker 自动创建订阅组，建议线下开启，线上关闭</span><br><span class="hljs-attr">autoCreateSubscriptionGroup</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># Broker 对外服务的监听端口</span><br><span class="hljs-attr">listenPort</span>=<span class="hljs-string">10911</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 删除文件时间点，默认凌晨4点</span><br><span class="hljs-attr">deleteWhen</span>=<span class="hljs-string">04</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 文件保留时间，默认48小时</span><br><span class="hljs-attr">fileReservedTime</span>=<span class="hljs-string">120</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># commitLog 每个文件的大小默认1G</span><br><span class="hljs-attr">mapedFileSizeCommitLog</span>=<span class="hljs-string">1073741824</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># ConsumeQueue 每个文件默认存 30W 条，根据业务情况调整</span><br><span class="hljs-attr">mapedFileSizeConsumeQueue</span>=<span class="hljs-string">300000</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># destroyMapedFileIntervalForcibly=120000</span><br><span class="hljs-comment"># redeleteHangedFileInterval=120000</span><br><span class="hljs-comment"># 检测物理文件磁盘空间</span><br><span class="hljs-attr">diskMaxUsedSpaceRatio</span>=<span class="hljs-string">88</span><br><span class="hljs-comment"># 存储路径</span><br><span class="hljs-comment"># storePathRootDir=/home/ztztdata/rocketmq-all-4.1.0-incubating/store</span><br><span class="hljs-comment"># commitLog 存储路径</span><br><span class="hljs-comment"># storePathCommitLog=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/commitlog</span><br><span class="hljs-comment"># 消费队列存储</span><br><span class="hljs-comment"># storePathConsumeQueue=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/consumequeue</span><br><span class="hljs-comment"># 消息索引存储路径</span><br><span class="hljs-comment"># storePathIndex=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/index</span><br><span class="hljs-comment"># checkpoint 文件存储路径</span><br><span class="hljs-comment"># storeCheckpoint=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/checkpoint</span><br><span class="hljs-comment"># abort 文件存储路径</span><br><span class="hljs-comment"># abortFile=/home/ztztdata/rocketmq-all-4.1.0-incubating/store/abort</span><br><span class="hljs-comment"># 限制的消息大小</span><br><span class="hljs-attr">maxMessageSize</span>=<span class="hljs-string">65536</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># flushCommitLogLeastPages=4</span><br><span class="hljs-comment"># flushConsumeQueueLeastPages=2</span><br><span class="hljs-comment"># flushCommitLogThoroughInterval=10000</span><br><span class="hljs-comment"># flushConsumeQueueThoroughInterval=60000</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># Broker 的角色</span><br><span class="hljs-comment"># - ASYNC_MASTER 异步复制Master</span><br><span class="hljs-comment"># - SYNC_MASTER 同步双写Master</span><br><span class="hljs-comment"># - SLAVE</span><br><span class="hljs-attr">brokerRole</span>=<span class="hljs-string">ASYNC_MASTER</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 刷盘方式</span><br><span class="hljs-comment"># - ASYNC_FLUSH 异步刷盘</span><br><span class="hljs-comment"># - SYNC_FLUSH 同步刷盘</span><br><span class="hljs-attr">flushDiskType</span>=<span class="hljs-string">ASYNC_FLUSH</span><br><span class="hljs-attr">​</span><br><span class="hljs-comment"># 发消息线程池数量</span><br><span class="hljs-comment"># sendMessageThreadPoolNums=128</span><br><span class="hljs-comment"># 拉消息线程池数量</span><br><span class="hljs-comment"># pullMessageThreadPoolNums=128</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59wbk1b8yj21820l0ab0.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817173427156"></p>
+<p>RocketMq使用</p>
+<p>在消息存储方面使用顺序写</p>
+<p>在消息发送方面使用零拷贝技术，少了从内核态到用户态的步骤，同时一次只能映射1.5G~2G的数据到虚拟内存，所以RocketMQ默认设置单个CommitLog日志数据文件大小为1G</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59wzdjz5sj21p10u0tbz.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817175729240"></p>
+<ul>
+<li>CommitLog: 存储消息的元数据</li>
+<li>ConsumerQueue: 存储消息在CommitLog的索引，按照消息的偏移量来查询消息</li>
+<li>IndexFile: 提供了一种通过key或者时间区间查询消息的方法</li>
+</ul>
+<h3 id="刷盘机制"><a href="#刷盘机制" class="headerlink" title="刷盘机制"></a>刷盘机制</h3><blockquote>
+<p>指的是消息从内存到磁盘</p>
+</blockquote>
+<ul>
+<li>同步刷盘，保证数据不丢失</li>
+<li><strong>异步刷盘，高吞吐量</strong></li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59x8t1s6fj21670u076m.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817180635301"></p>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59xflsnvfj21g90u0tbm.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817181308435"></p>
+<h3 id="消息复制"><a href="#消息复制" class="headerlink" title="消息复制"></a>消息复制</h3><ul>
+<li>同步复制，只有master把消息同步到slave，才通知用户写入成功</li>
+<li>异步复制，只要master写入成功，就通知用户成功，可能出现消息的丢失</li>
+<li>配置方式：broker.properties中的brokerRole<ul>
+<li>ASYNC_MASTER 主节点，异步复制</li>
+<li><strong>SYNC_MASTER 主节点，同步复制，保证消息不丢失</strong></li>
+<li>SLAVE 从节点</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59xo9j383j211l0u076a.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817182127810"></p>
+<p><strong>建议：异步刷盘+主从同步复制</strong></p>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><ul>
+<li>生产者负载均衡：轮询发送，会平均落在不同的Broker的不同的Queue（同一个topic）</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yar6xlpj21ji0leacd.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817184304881"></p>
+<ul>
+<li><p>消费者负载均衡</p>
+<ul>
+<li><p>集群模式，默认就实现了负载均衡，只需要增加消费者就可以达到负载的效果</p>
+<blockquote>
+<p><strong>在集群模式下，一个队列只允许分配给一个消费者，当消费者的数量比队列的数量还多的话，就会出现闲置的消费者</strong></p>
+</blockquote>
+<p>默认算法是：AllocateMessageQueueAveragely</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59ygldk4qj20wc0o83zn.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817184838450"></p>
+<p>另一种算法是：AllocateMessageQueueAveragelyByCircle</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yiqjbz4j20w80o0ta0.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817185045079"></p>
+</li>
+<li><p>广播模式</p>
+<blockquote>
+<p><strong>每一个消费者都会消费所有的队列，所有广播模式不属于负载均衡</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59yqme13aj20z20oamyt.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817185816466"></p>
+<h3 id="消息重试"><a href="#消息重试" class="headerlink" title="消息重试"></a>消息重试</h3><blockquote>
+<p>指的是消费者消费消息失败后会重试</p>
+</blockquote>
+<ul>
+<li><p>顺序消息的重试</p>
+<blockquote>
+<p><strong>当出现消费失败的情况时，会无限次数重试(每隔1秒)，应及时进行处理，避免造成消费阻塞</strong></p>
+</blockquote>
+</li>
+<li><p>无序消息的重试</p>
+<blockquote>
+<p>无序消息重试，只针对集群方式生效（默认最多重试16次），依然失败则进入死信队列，而广播模式没有重试机制</p>
+</blockquote>
+</li>
+</ul>
+<p>​			<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59z9j6h3uj21aw0ismyq.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817191627279"></p>
+<p>无序消费的集群模式重试机制配置方式：</p>
+<p>推荐使用：Action.ReconsumeLater;</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59zdvgml7j20xu0fswgf.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817192040478"></p>
+<p>不想重试，配置如下</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h59zgstq62j20y40fodhm.jpg" srcset="/img/loading.gif" lazyload alt="image-20220817192329498"></p>
+<h3 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h3><blockquote>
+<p>当消息经过重试后依然失败，消息会被放入死信队列</p>
+</blockquote>
+<p>特征：</p>
+<ul>
+<li>不会再被消费者正常消费</li>
+<li>有效期与正常消息相同，均为3天</li>
+<li><strong>死信队列对应的是消费者组</strong>，该消费者组下面的所有topic都会放入同一个死信队列</li>
+</ul>
+<p>如何消费死信队列</p>
+<ul>
+<li>可以在控制台重新发送该消息</li>
+<li>可以创建一个新的消费者，重新消费死信队列中的消息</li>
+</ul>
+<h3 id="生产者与生产者组"><a href="#生产者与生产者组" class="headerlink" title="生产者与生产者组"></a>生产者与生产者组</h3><blockquote>
+<p>消息发送包括同步发送，异步发送，顺序发送，单向发送。</p>
+<p>同步发送，发送过程中处于阻塞状态，直到broker返回消息确认</p>
+<p>异步发送，同步异步回调来接收broker的消息确认</p>
+<p>顺序发送，</p>
+<p>单向发送，发过去就不管了，没有消息确认机制</p>
+</blockquote>
+<blockquote>
+<p>生产者组，同一类Producer的集合，发送同一类消息且发送逻辑一致</p>
+<p>使用场景：如果发送的是事务消息且发送消息之后生产者崩溃了，但事务还没有结束，此时broker会与生产者组的其他Producer完成整个事务的发送</p>
+</blockquote>
+<h3 id="消息生产与消费"><a href="#消息生产与消费" class="headerlink" title="消息生产与消费"></a>消息生产与消费</h3><ul>
+<li><p>顺序消费</p>
+<blockquote>
+<p>生产者通过MessageQueueSelector实现，原理是对传递的参数进行取模或者hash运算，将需要排序的消息发往同一个队列</p>
+<p>当Broker推送消息到消费者时，消费者会通过一个orderly的监听器进行顺序消费</p>
+</blockquote>
+</li>
+<li><p>延迟消息</p>
+<blockquote>
+<p>消息生产者设置messageDelayLevel实现延迟消息，非商业版只能设置18个等级的messageDelayLevel，如下</p>
+<p>原理：18个等级对应着18个延迟消费的队列（系统内置的延迟队列<strong>SCHEDULE_TOPIC_XXXX</strong>），延迟消息不是延迟发送，而是延迟消费</p>
+<p>messageDelayLevel&#x3D;1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h</p>
+</blockquote>
+</li>
+<li><p>批量消息</p>
+<blockquote>
+<ul>
+<li>将消息放到集合进行批量发送，但是批量的消息限制在4m以内</li>
+<li>如果超出4M，可以使用<code>ListSpliter</code>进行拆分成小于4m的集合进行分批发送；同时设置Broker的接收限制为4M以内，即<code>broker.conf</code>中的<code>maxMessageSize</code></li>
+<li>在生产者中的源码中<code>DefaultMQProducer</code>，已经设置了<code>maxMessageSize</code>的大小限制为4M</li>
+</ul>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6841gcjg2j20v80seq6b.jpg" srcset="/img/loading.gif" lazyload alt="image-20220916075050844"></p>
+</li>
+<li><p>过滤消息</p>
+<ul>
+<li><p>Tag方式的过滤</p>
+<blockquote>
+<p>生产方对消息打上tag</p>
+<p>消费方订阅带有指定tag的消息，实际上过滤是Broker做的</p>
+<p>不适用复杂场景的过滤</p>
+</blockquote>
+</li>
+<li><p>SQL表达式过滤</p>
+<blockquote>
+<p>生产方通过putUserProperty为消息设置各种键值对</p>
+<p>消费方通过mq的sql表达式</p>
+<p>同时设置<code>broker.conf</code>中的<code>enablePropertyFilter=true</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="消息的推和拉"><a href="#消息的推和拉" class="headerlink" title="消息的推和拉"></a>消息的推和拉</h3><ul>
+<li><p>推模式</p>
+<blockquote>
+<p>推模式指的是broker将消息推给消费者，消费者通过监听器接收消息并消费；</p>
+<p>大部分场景用的都是推模式</p>
+</blockquote>
+</li>
+<li><p>拉模式</p>
+<blockquote>
+<p>拉模式指的是消费者主动向broker拉取消息，编程起来相对复杂，但灵活性高，可以自定义拉去哪些消息</p>
+<p>适用于消息的回溯，比如需要重新消费过去24小时的某些消息，可以使用拉模式</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="消息幂等"><a href="#消息幂等" class="headerlink" title="消息幂等"></a>消息幂等</h3><p>当Broker或者客户端重启、扩缩容时，会触发Rebalance，重新进行负载均衡</p>
+<p>通过业务唯一标识来保证幂等性</p>
+<ul>
+<li>将消费过的消息进行保存，每次消费之前去查一下，如已消费则直接丢弃</li>
+<li>使用分布式锁，每次消费之前去获取锁，来判断是否已经消费过该消息</li>
+</ul>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j08mwh0zj211a0f1tab.jpg" srcset="/img/loading.gif" lazyload alt="rocketmq_architecture_1"></p>
+<h4 id="NameServer作用"><a href="#NameServer作用" class="headerlink" title="NameServer作用"></a>NameServer作用</h4><blockquote>
+<ul>
+<li>Broker管理，集群中每一个NameServer节点都会保存一份完整Broker信息，同时，提供心跳检测Broker是否存活</li>
+<li>RouteInfo管理，每个NameServer将保存关于Broker集群的整个路由信息和用于客户端查询的队列信息。</li>
+</ul>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j0o7o5eaj20nz0e0dg6.jpg" srcset="/img/loading.gif" lazyload alt="rocketmq_architecture_2"></p>
+<h4 id="BrokerServer作用"><a href="#BrokerServer作用" class="headerlink" title="BrokerServer作用"></a>BrokerServer作用</h4><blockquote>
+<p>Broker主要负责消息的存储、投递和查询以及服务高可用保证</p>
+</blockquote>
+<h3 id="部署架构"><a href="#部署架构" class="headerlink" title="部署架构"></a>部署架构</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j1a0oo87j21350g6jtb.jpg" srcset="/img/loading.gif" lazyload alt="rocketmq_architecture_3"></p>
+<ul>
+<li>NameServer是一个几乎无状态节点，可集群部署，节点之间无任何信息同步。</li>
+<li>一个Master可以对应多个Slave，但是一个Slave只能对应一个Master，Master与Slave 的对应关系通过指定相同的BrokerName</li>
+<li>BrokerId为0表示Master，非0表示Slave</li>
+<li>Broker与NameServer通过长连接定时注册RouteInfo到NameServer</li>
+<li>&#x3D;&#x3D;<strong>当前RocketMQ版本在部署架构上支持一Master多Slave，但只有BrokerId&#x3D;1的从服务器才会参与消息的读负载。</strong>&#x3D;&#x3D;</li>
+</ul>
+<p>​	<strong>Producer</strong></p>
+<ul>
+<li>Producer完全无状态</li>
+<li>Producer与NameServer集群中的其中一个节点（随机选择）建立长连接</li>
+<li>定期从NameServer获取Topic路由信息</li>
+<li>Producer定期想Broker的Master节点发送心跳</li>
+</ul>
+<p>​	<strong>Consumer</strong></p>
+<ul>
+<li>Consumer与NameServer集群中的其中一个节点（随机选择）建立长连接</li>
+<li>定期从NameServer获取Topic路由信息</li>
+<li>Consumer定期向Master、Slave发送心跳</li>
+</ul>
+<h3 id="消息存储"><a href="#消息存储" class="headerlink" title="消息存储"></a>消息存储</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5j54b0u61j20vq0owwhr.jpg" srcset="/img/loading.gif" lazyload alt="rocketmq_design_1"></p>
+<p><strong>CommitLog</strong></p>
+<ul>
+<li>存放的是真正的消息内容</li>
+<li>存储Producer端写入的消息主体内容</li>
+<li>消息主要是顺序写入日志文件（文件长度20），00000000000000000000代表了第一个文件，起始偏移量为0，文件大小为1G&#x3D;1073741824；当第一个文件写满了，第二个文件为00000000001073741824，起始偏移量为1073741824，以此类推。</li>
+</ul>
+<p><strong>ConsumeQueue</strong></p>
+<ul>
+<li>存放的是消息的偏移量信息</li>
+<li>ConsumeQueue是逻辑消费队列</li>
+<li>Consumer可根据ConsumeQueue来查找待消费的消息</li>
+<li>具体存储路径为：$HOME&#x2F;store&#x2F;consumequeue&#x2F;{topic}&#x2F;{queueId}&#x2F;{fileName}</li>
+<li>文件中每一个条目共20个字节，分别为8字节的commitlog物理偏移量、4字节的消息长度、8字节tag hashcode</li>
+<li>每个ConsumeQueue文件大小约5.72M</li>
+</ul>
+<p><strong>IndexFile</strong></p>
+<ul>
+<li>IndexFile（索引文件）**&#x3D;&#x3D;提供了一种可以通过key或时间区间来查询消息的方法&#x3D;&#x3D;**</li>
+<li>Index文件的存储位置是：$HOME&#x2F;store&#x2F;index&#x2F;{fileName}，文件名fileName是以创建时的时间戳命名的</li>
+<li>单个IndexFile文件大小约为400M</li>
+<li>IndexFile的底层存储设计为HashMap结构</li>
+</ul>
+<p>Broker端的后台服务线程—ReputMessageService不停地分发请求并异步构建ConsumeQueue（逻辑消费队列）和IndexFile（索引文件）数据。</p>
+<h3 id="页缓存与内存映射"><a href="#页缓存与内存映射" class="headerlink" title="页缓存与内存映射"></a>页缓存与内存映射</h3><p><strong>页缓存 PageCache</strong></p>
+<ul>
+<li>对于数据的写入，OS会先写入至Cache内，随后通过异步的方式由pdflush内核线程将Cache内的数据刷盘至物理磁盘上。</li>
+<li>对于数据的读取，如果一次读取文件时出现未命中PageCache的情况，OS从物理磁盘上访问读取文件的同时，会顺序对其他相邻块的数据文件进行预读取。</li>
+</ul>
+<p><strong>内存映射</strong></p>
+<ul>
+<li>RocketMQ主要通过MappedByteBuffer对文件进行读写操作。即零拷贝技术</li>
+</ul>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><h3 id="生产者发送消息"><a href="#生产者发送消息" class="headerlink" title="生产者发送消息"></a>生产者发送消息</h3><h4 id="负载均衡-1"><a href="#负载均衡-1" class="headerlink" title="负载均衡"></a>负载均衡</h4><blockquote>
+<p><code>org.apache.rocketmq.client.latency.MQFaultStrategy#selectOneMessageQueue</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * 生产者是如何选择将消息发送到哪个队列的</span><br><span class="hljs-comment">  */</span><br> <span class="hljs-keyword">public</span> MessageQueue <span class="hljs-title function_">selectOneMessageQueue</span><span class="hljs-params">(<span class="hljs-keyword">final</span> TopicPublishInfo tpInfo, <span class="hljs-keyword">final</span> String lastBrokerName)</span> &#123;<br>     <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.sendLatencyFaultEnable) &#123;<br>         <span class="hljs-keyword">try</span> &#123;<br>             <span class="hljs-comment">// 去threadLocal获取index，保证线程之间的数据隔离</span><br>             <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> tpInfo.getSendWhichQueue().incrementAndGet();<br>             <span class="hljs-comment">// 遍历需要发送的队列</span><br>             <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; tpInfo.getMessageQueueList().size(); i++) &#123;<br>                 <span class="hljs-comment">// 对index与队列总数进行取模</span><br>                 <span class="hljs-type">int</span> <span class="hljs-variable">pos</span> <span class="hljs-operator">=</span> Math.abs(index++) % tpInfo.getMessageQueueList().size();<br>                 <span class="hljs-keyword">if</span> (pos &lt; <span class="hljs-number">0</span>)<br>                     pos = <span class="hljs-number">0</span>;<br>                 <span class="hljs-comment">// 确定要发送到哪个队列</span><br>                 <span class="hljs-type">MessageQueue</span> <span class="hljs-variable">mq</span> <span class="hljs-operator">=</span> tpInfo.getMessageQueueList().get(pos);<br>                 <span class="hljs-keyword">if</span> (latencyFaultTolerance.isAvailable(mq.getBrokerName()))<br>                     <span class="hljs-keyword">return</span> mq;<br>             &#125;<br><br>             <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">notBestBroker</span> <span class="hljs-operator">=</span> latencyFaultTolerance.pickOneAtLeast();<br>             <span class="hljs-type">int</span> <span class="hljs-variable">writeQueueNums</span> <span class="hljs-operator">=</span> tpInfo.getQueueIdByBroker(notBestBroker);<br>             <span class="hljs-keyword">if</span> (writeQueueNums &gt; <span class="hljs-number">0</span>) &#123;<br>                 <span class="hljs-keyword">final</span> <span class="hljs-type">MessageQueue</span> <span class="hljs-variable">mq</span> <span class="hljs-operator">=</span> tpInfo.selectOneMessageQueue();<br>                 <span class="hljs-keyword">if</span> (notBestBroker != <span class="hljs-literal">null</span>) &#123;<br>                     mq.setBrokerName(notBestBroker);<br>                     mq.setQueueId(tpInfo.getSendWhichQueue().incrementAndGet() % writeQueueNums);<br>                 &#125;<br>                 <span class="hljs-keyword">return</span> mq;<br>             &#125; <span class="hljs-keyword">else</span> &#123;<br>                 latencyFaultTolerance.remove(notBestBroker);<br>             &#125;<br>         &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>             log.error(<span class="hljs-string">&quot;Error occurred when selecting message queue&quot;</span>, e);<br>         &#125;<br><br>         <span class="hljs-keyword">return</span> tpInfo.selectOneMessageQueue();<br>     &#125;<br><br>     <span class="hljs-keyword">return</span> tpInfo.selectOneMessageQueue(lastBrokerName);<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MQ/" class="category-chain-item">MQ</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/MQ/Middleware/" class="category-chain-item">Middleware</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/RocketMq/">#RocketMq</a>
+      
+        <a href="/tags/Middleware/">#Middleware</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RocketMq学习笔记</div>
+      <div>http://example.com/2022/07/12/Middleware/MessageQueue/RocketMq学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>UncleBryan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/28/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/Arthas/" title="Arthas常用命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Arthas常用命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/06/Middleware/MessageQueue/Kafka%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Kafka学习笔记">
+                        <span class="hidden-mobile">Kafka学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","appKey":"pfnSBUqV0Q7IFon0bcBvyUZS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://0alowe3l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

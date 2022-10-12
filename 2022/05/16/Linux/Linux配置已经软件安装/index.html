@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="UncleBryan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Linux配置已经软件安装1.设置通过主机名访问 修改&#x2F;etc&#x2F;hosts文件 在每个主机下分别加入本机与其他主机与ip的映射关系 10.211.55.4 unclebryan0110.211.55.5 unclebryan0210.211.55.6 unclebryan03  2.免密登录123456# 执行下面命令一路回车ssh-keygen -t rsa# 将秘钥copy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux配置已经软件安装">
+<meta property="og:url" content="http://example.com/2022/05/16/Linux/Linux%E9%85%8D%E7%BD%AE%E5%B7%B2%E7%BB%8F%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Life is good">
+<meta property="og:description" content="Linux配置已经软件安装1.设置通过主机名访问 修改&#x2F;etc&#x2F;hosts文件 在每个主机下分别加入本机与其他主机与ip的映射关系 10.211.55.4 unclebryan0110.211.55.5 unclebryan0210.211.55.6 unclebryan03  2.免密登录123456# 执行下面命令一路回车ssh-keygen -t rsa# 将秘钥copy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h14oddc7suj20ik0e2t9z.jpg">
+<meta property="article:published_time" content="2022-05-16T15:44:30.411Z">
+<meta property="article:modified_time" content="2022-10-12T15:32:49.145Z">
+<meta property="article:author" content="UncleBryan">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Config">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h14oddc7suj20ik0e2t9z.jpg">
+  
+  
+  
+  <title>Linux配置已经软件安装 - Life is good</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","app_key":"pfnSBUqV0Q7IFon0bcBvyUZS","server_url":"https://0alowe3l.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Bryan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux配置已经软件安装"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-16 23:44" pubdate>
+          2022年5月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux配置已经软件安装</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="Linux配置已经软件安装"><a href="#Linux配置已经软件安装" class="headerlink" title="Linux配置已经软件安装"></a>Linux配置已经软件安装</h3><h4 id="1-设置通过主机名访问"><a href="#1-设置通过主机名访问" class="headerlink" title="1.设置通过主机名访问"></a>1.设置通过主机名访问</h4><blockquote>
+<p>修改&#x2F;etc&#x2F;hosts文件</p>
+<p>在每个主机下分别加入本机与其他主机与ip的映射关系</p>
+<p>10.211.55.4 unclebryan01<br>10.211.55.5 unclebryan02<br>10.211.55.6 unclebryan03</p>
+</blockquote>
+<h4 id="2-免密登录"><a href="#2-免密登录" class="headerlink" title="2.免密登录"></a>2.免密登录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 执行下面命令一路回车</span><br>ssh-keygen -t rsa<br><span class="hljs-comment"># 将秘钥copy到想要免密登录的机器上(本机最好也执行一下，自己免密登录自己)</span><br>ssh-copy-id ip/主机名<br><span class="hljs-comment"># 免密登录后可以直接通过下面命令连接远程主机</span><br>ssh ip/主机名<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-编写文件分发脚本"><a href="#3-编写文件分发脚本" class="headerlink" title="3.编写文件分发脚本"></a>3.编写文件分发脚本</h4><blockquote>
+<p>将文件分发到集群中的每一台机器上</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin路径下新建xsync文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment">#1. 判断参数个数</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> -lt 1 ]<br><span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">echo</span> Not Enough Arguement!<br>    <span class="hljs-built_in">exit</span>;<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-comment">#2. 遍历集群所有机器</span><br><span class="hljs-keyword">for</span> host <span class="hljs-keyword">in</span> unclebryan02 unclebryan03<br><span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">echo</span> ==================== <span class="hljs-variable">$host</span> ====================<br>    <span class="hljs-comment">#3. 遍历所有目录，挨个发送</span><br>    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> <span class="hljs-variable">$@</span><br>    <span class="hljs-keyword">do</span><br>        <span class="hljs-comment">#4. 判断文件是否存在</span><br>        <span class="hljs-keyword">if</span> [ -e <span class="hljs-variable">$file</span> ]<br>            <span class="hljs-keyword">then</span><br>                <span class="hljs-comment">#5. 获取父目录</span><br>                pdir=$(<span class="hljs-built_in">cd</span> -P $(<span class="hljs-built_in">dirname</span> <span class="hljs-variable">$file</span>); <span class="hljs-built_in">pwd</span>)<br>                <span class="hljs-comment">#6. 获取当前文件的名称</span><br>                fname=$(<span class="hljs-built_in">basename</span> <span class="hljs-variable">$file</span>)<br>                ssh <span class="hljs-variable">$host</span> <span class="hljs-string">&quot;mkdir -p <span class="hljs-variable">$pdir</span>&quot;</span><br>                rsync -av <span class="hljs-variable">$pdir</span>/<span class="hljs-variable">$fname</span> <span class="hljs-variable">$host</span>:<span class="hljs-variable">$pdir</span><br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-built_in">echo</span> <span class="hljs-variable">$file</span> does not exists!<br>        <span class="hljs-keyword">fi</span><br>    <span class="hljs-keyword">done</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#设置脚本权限</span><br><span class="hljs-built_in">chmod</span> 777 xsync<br><span class="hljs-comment"># 执行测试</span><br>xsync + 文件夹 <br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-编写批量命令执行脚本"><a href="#4-编写批量命令执行脚本" class="headerlink" title="4.编写批量命令执行脚本"></a>4.编写批量命令执行脚本</h4><p>在&#x2F;usr&#x2F;local&#x2F;bin路径下新建xcall文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment">#在集群的所有机器上批量执行同一条命令</span><br><span class="hljs-keyword">if</span>((<span class="hljs-variable">$#</span>==0))<br><span class="hljs-keyword">then</span><br>	<span class="hljs-built_in">echo</span> 请输入您要操作的命令！<br>	<span class="hljs-built_in">exit</span><br><span class="hljs-keyword">fi</span><br><br><span class="hljs-built_in">echo</span> 要执行的命令是$*<br><br><span class="hljs-comment">#循环执行此命令</span><br><span class="hljs-keyword">for</span>((i=1;i&lt;=3;i++))<br><span class="hljs-keyword">do</span><br>	<span class="hljs-built_in">echo</span> ---------------------unclebryan0<span class="hljs-variable">$i</span>-----------------<br>	ssh unclebryan0<span class="hljs-variable">$i</span> $*<br><span class="hljs-keyword">done</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 执行命令时一定要带参数，否则会直接退出</span><br>xcall <span class="hljs-comment"># 会退出脚本</span><br>xcall <span class="hljs-built_in">ls</span> <span class="hljs-comment"># 不会退出脚本</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-删除自带的jdk"><a href="#5-删除自带的jdk" class="headerlink" title="5.删除自带的jdk"></a>5.删除自带的jdk</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><br>sudo yum -y remove *openjdk*<br><br><span class="hljs-comment"># 配置自己安装的jdk</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;JAVA_HOME=/usr/local/software/jdk1.8.0_311&#x27;</span> &gt;&gt; ~/.bash_profile<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/lib&#x27;</span> &gt;&gt; ~/.bash_profile<br><span class="hljs-built_in">source</span> ~/.bash_profile<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-安装zshell"><a href="#6-安装zshell" class="headerlink" title="6.安装zshell"></a>6.安装zshell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看当前主机的shell类型</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span> <br><br><span class="hljs-comment"># 查看是否已安装zshell</span><br><span class="hljs-built_in">cat</span> /etc/shells <br><br><span class="hljs-comment"># zsh安装</span><br><span class="hljs-comment">#CentOS： </span><br>yum -y install zsh git<br><span class="hljs-comment">#Ubuntu:  </span><br>sudo apt -y install zsh git<br><br><span class="hljs-comment"># 安装ohmyzsh</span><br>$ sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br>或者<br>$ sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)</span>&quot;</span><br><br><span class="hljs-comment"># 切换zshell</span><br>chsh -s /bin/zsh<br><br><span class="hljs-comment"># 切换为bash</span><br>chsh -s /bin/bash<br><br><span class="hljs-comment"># ps. 切换后新开一个终端才会生效</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 如果安装ohmyzsh一直失败，有可能是网络原因，请替换国内镜像</span><br><span class="hljs-comment"># 下载码云安装包</span><br>wget https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh<br><br><span class="hljs-comment"># 修改install.sh中的下面两行</span><br>REPO=<span class="hljs-variable">$&#123;REPO:-ohmyzsh/ohmyzsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://github.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br><span class="hljs-comment"># 为</span><br>REPO=<span class="hljs-variable">$&#123;REPO:-mirrors/oh-my-zsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://gitee.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br><br><span class="hljs-comment">#运行install.sh</span><br>./install.sh<br><br><span class="hljs-comment"># 修改源码仓库地址</span><br><span class="hljs-built_in">cd</span> ~/.oh-my-zsh<br>git remote set-url origin https://gitee.com/mirrors/oh-my-zsh.git<br>git pull<br></code></pre></td></tr></table></figure>
+
+<h4 id="7-安装mysql"><a href="#7-安装mysql" class="headerlink" title="7.安装mysql"></a>7.安装mysql</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 下载rpm</span><br>wget https://repo.mysql.com//mysql80-community-release-el7-1.noarch.rpm<br><br><span class="hljs-comment"># 进行repo安装，会在/etc/yum.repos.d/目录下生成两个repo文件mysql-community.repo mysql-community-source.repo</span><br>rpm -ivh mysql80-community-release-el7-1.noarch.rpm<br><br><span class="hljs-comment"># 安装</span><br> yum install mysql-server -y<br><br><br><span class="hljs-comment"># mysql设置不区分大小写</span><br>vim /etc/my.cnf<br><span class="hljs-comment">#让MYSQL大小写敏感(1-不敏感，0-敏感)</span><br>lower_case_table_names=1<br><br><span class="hljs-comment"># 启动服务</span><br>systemctl start mysqld.service<br><br><span class="hljs-comment"># 查看状态</span><br>systemctl status mysqld.service<br><br><span class="hljs-comment"># 获取密码，有时候是空密码</span><br>grep <span class="hljs-string">&quot;password&quot;</span> /var/log/mysql/mysqld.log <br>或者<br>grep <span class="hljs-string">&quot;password&quot;</span> /var/log/mysqld.log<br><br><span class="hljs-comment"># 登录并修改密码</span><br>mysql -uroot -p <br>ALTER USER <span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;123456&#x27;</span>;<br><br><span class="hljs-comment"># 远程登录</span><br>use mysql;<br>update user  <span class="hljs-built_in">set</span> host = <span class="hljs-string">&#x27;%&#x27;</span> <span class="hljs-built_in">where</span> user = <span class="hljs-string">&#x27;root&#x27;</span>; <br><br><span class="hljs-comment"># 设置后远程登录后，记得重启一下服务</span><br>systemctl restart mysqld.service<br></code></pre></td></tr></table></figure>
+
+<p>安装中的问题</p>
+<p>1. </p>
+<blockquote>
+<p>用Navicat连接mysql，报错如下：<br> <code>Client does not support authentication protocol requested by server；</code><br> 报错原因：<br> mysql8.0 引入了新特性 <code>caching_sha2_password</code>；这种密码加密方式Navicat 12以下客户端不支持；<br> Navicat 12以下客户端支持的是<code>mysql_native_password</code>这种加密方式；<br> 解决方案：<br> 1，用如下语句查看MySQL当前加密方式<br> <code>select host,user,plugin from user;</code><br> 查询结果</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby">+-----------+------------------+-----------------------+<br>|<span class="hljs-params"> host      </span>| user             |<span class="hljs-params"> plugin                </span>|<br>+-----------+------------------+-----------------------+<br>|<span class="hljs-params"> %         </span>| root             |<span class="hljs-params"> caching_sha2_password </span>|<br>|<span class="hljs-params"> localhost </span>| mysql.infoschema |<span class="hljs-params"> mysql_native_password </span>|<br>|<span class="hljs-params"> localhost </span>| mysql.session    |<span class="hljs-params"> mysql_native_password </span>|<br>|<span class="hljs-params"> localhost </span>| mysql.sys        |<span class="hljs-params"> mysql_native_password </span>|<br>+-----------+------------------+-----------------------+<br></code></pre></td></tr></table></figure>
+
+<p>看第一行，root加密方式为<code>caching_sha2_password</code>。<br> 使用命令将他修改成<code>mysql_native_password</code>加密模式：<br> <code>update user set plugin=&#39;mysql_native_password&#39; where user=&#39;root&#39;;</code><br> 再次连接</p>
+</blockquote>
+<p>2. </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs log">安装mysql时报错：<br><br>warning: /var/cache/yum/x86_64/7/mysql80-community/packages/mysql-community-server-8.0.28-1.el7.x86_64.rpm: Header V4 RSA/SHA256 Signature, key ID 3a79bd29: NOKEY<br>Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql<br><br><br>The GPG keys listed for the &quot;MySQL 8.0 Community Server&quot; repository are already installed but they are not correct for this package.<br>Check that the correct key URLs are configured for this repository.<br><br><br> Failing package is: mysql-community-server-8.0.28-1.el7.x86_64<br> GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql<br><br><br>解决方案：<br>这个key文件RPM-GPG-KEY-mysql不对，要替换成正确的文件。<br><br>我安装的是mysql 8，下载最新的key文件地址为：https://repo.mysql.com/<br><br>这个地址下的最新key文件是：<br><br>RPM-GPG-KEY-mysql-2022<br>将这个文件下载到本地的key文件夹。<br><br>cd /etc/pki/rpm-gpg/<br><br>wget https://repo.mysql.com/RPM-GPG-KEY-mysql-2022<br><br>然后需要修改yum repo文件来设置安装时，使用这个key文件<br><br>vi /etc/yum.repos.d/mysql-community.repo<br>修改为下面内容后重新安装<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h14oddc7suj20ik0e2t9z.jpg" srcset="/img/loading.gif" lazyload alt="Screen Shot 2022-04-10 at 15.48.56"></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">http</span> <span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">include</span>       <span class="hljs-string">mime.types;</span><br>    <span class="hljs-attr">default_type</span>  <span class="hljs-string">application/octet-stream;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">    #log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="hljs-comment">    #                  &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="hljs-comment">    #                  &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">    #access_log  logs/access.log  main;</span><br><br>    <span class="hljs-attr">sendfile</span>        <span class="hljs-string">on;</span><br><span class="hljs-comment">    #tcp_nopush     on;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">    #keepalive_timeout  0;</span><br><span class="hljs-comment">    #keepalive_timeout  65;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">    #gzip  on;</span><br><br><br><span class="hljs-attr">upstream</span> <span class="hljs-string">nacos-server&#123;</span><br>        <span class="hljs-attr">server</span> <span class="hljs-string">192.168.64.2:8848 weight=1;</span><br>        <span class="hljs-attr">server</span> <span class="hljs-string">192.168.64.3:8848 weight=1;</span><br>        <span class="hljs-attr">server</span> <span class="hljs-string">192.168.64.4:8848 weight=1;</span><br><span class="hljs-attr">&#125;</span><br> <span class="hljs-attr">server</span> <span class="hljs-string">&#123;</span><br><span class="hljs-comment">      #  listen       80;</span><br>        <span class="hljs-attr">server_name</span>  <span class="hljs-string">localhost;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">        #charset koi8-r;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">        #access_log  logs/host.access.log  main;</span><br><br><br>        <span class="hljs-attr">location</span> <span class="hljs-string">/nacos &#123;</span><br>                <span class="hljs-attr">proxy_pass</span>  <span class="hljs-string">http://nacos-server;</span><br>                <span class="hljs-attr">proxy_set_header</span> <span class="hljs-string">Host $host;</span><br>                <span class="hljs-attr">proxy_set_header</span> <span class="hljs-string">X-Real-Ip $remote_addr;</span><br>                <span class="hljs-attr">proxy_set_header</span> <span class="hljs-string">X-Forwarded-For $remote_addr;</span><br>        <span class="hljs-attr">&#125;</span><br> <span class="hljs-attr">&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-yum报错"><a href="#8-yum报错" class="headerlink" title="8. yum报错"></a>8. yum报错</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">CentOS Linux 8 - AppStream                                                                                                                                                                                            73  B/s |  38  B     00:00<br>Error: Failed to download metadata <span class="hljs-keyword">for</span> repo <span class="hljs-string">&#x27;appstream&#x27;</span>: Cannot prepare internal mirrorlist: No URLs <span class="hljs-keyword">in</span> mirrorlist<br></code></pre></td></tr></table></figure>
+
+<p><strong>Step 1:</strong> Go to the <code>/etc/yum.repos.d/</code> directory.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@autocontroller ~]<span class="hljs-comment"># cd /etc/yum.repos.d/</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Step 2:</strong> Run the below commands</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@autocontroller ~]<span class="hljs-comment"># sed -i &#x27;s/mirrorlist/#mirrorlist/g&#x27; /etc/yum.repos.d/CentOS-*</span><br>[root@autocontroller ~]<span class="hljs-comment"># sed -i &#x27;s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g&#x27; /etc/yum.repos.d/CentOS-*</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Step 3:</strong> Now run the yum update</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@autocontroller ~]<span class="hljs-comment"># yum update -y</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="9-vim中文乱码"><a href="#9-vim中文乱码" class="headerlink" title="9. vim中文乱码"></a>9. vim中文乱码</h4><blockquote>
+<p>vim的设置一般放在&#x2F;etc&#x2F;vimrc文件中，不过，建议不要修改它。可以修改<del>&#x2F;.vimrc文件（默认不存在，可以自己新建一个），写入所希望的设置。</del>&#x2F;.vimrc内容如下：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936<br><span class="hljs-built_in">set</span> termencoding=utf-8<br><span class="hljs-built_in">set</span> encoding=utf-8<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/">#Linux</a>
+      
+        <a href="/tags/Config/">#Config</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux配置已经软件安装</div>
+      <div>http://example.com/2022/05/16/Linux/Linux配置已经软件安装/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>UncleBryan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/16/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Junit/JUnit4/" title="JUnit4学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JUnit4学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/16/Middleware/VPN%E5%AF%BC%E8%87%B4%E7%9A%84Dubbo%E6%B3%A8%E5%86%8Cip%E9%97%AE%E9%A2%98/" title="VPN导致的Dubbo注册ip问题">
+                        <span class="hidden-mobile">VPN导致的Dubbo注册ip问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","appKey":"pfnSBUqV0Q7IFon0bcBvyUZS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://0alowe3l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

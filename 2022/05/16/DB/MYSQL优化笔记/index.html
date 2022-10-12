@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="UncleBryan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MYSQL优化笔记mysql8去掉了缓存，因为命中率太低了 group by “Using filesort”，代表查询中有排序操作;   mysql5.7 group by 存在索引隐式排序，输出结果是排好序的    mysql8 去掉了索引隐式排序，输出结果不是排好序的    开启慢sql日志in是否走索引  in通常是走索引的，当in后面的数据在数据表中超过30%（上面的例子的匹配数据大约6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Life is good">
+<meta property="og:url" content="http://example.com/2022/05/16/DB/MYSQL%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Life is good">
+<meta property="og:description" content="MYSQL优化笔记mysql8去掉了缓存，因为命中率太低了 group by “Using filesort”，代表查询中有排序操作;   mysql5.7 group by 存在索引隐式排序，输出结果是排好序的    mysql8 去掉了索引隐式排序，输出结果不是排好序的    开启慢sql日志in是否走索引  in通常是走索引的，当in后面的数据在数据表中超过30%（上面的例子的匹配数据大约6">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210913164350650.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210913164524289.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\v2-0deb7c3dff1051fee85baf6daa4bd219_r.jpg">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\72e166eb2f36e62147102324737713ae.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\github%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210915105716719.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210917124742511.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210917131933892.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210917132055995.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\1202638-20190902232835378-374770770.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\1202638-20190902233108725-1148703041.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210920103933336.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210920133348526.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210920225014283.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210921003456750.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\b-trees.png">
+<meta property="og:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\b+trees.png">
+<meta property="article:published_time" content="2022-05-16T15:44:30.440Z">
+<meta property="article:modified_time" content="2022-10-08T07:14:13.881Z">
+<meta property="article:author" content="UncleBryan">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="e:\%E6%88%91%E7%9A%84\%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3\md-pic\image-20210913164350650.png">
+  
+  
+  
+  <title>Life is good</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","app_key":"pfnSBUqV0Q7IFon0bcBvyUZS","server_url":"https://0alowe3l.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Bryan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-16 23:44" pubdate>
+          2022年5月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="MYSQL优化笔记"><a href="#MYSQL优化笔记" class="headerlink" title="MYSQL优化笔记"></a>MYSQL优化笔记</h3><p>mysql8去掉了缓存，因为命中率太低了</p>
+<h4 id="group-by"><a href="#group-by" class="headerlink" title="group by"></a>group by</h4><blockquote>
+<p>“Using filesort”，代表查询中有排序操作;</p>
+</blockquote>
+<blockquote>
+<p>mysql5.7 group by 存在索引隐式排序，输出结果是排好序的</p>
+</blockquote>
+<p><img src="E:\我的\学习文档\md-pic\image-20210913164350650.png" srcset="/img/loading.gif" lazyload alt="image-20210913164350650"></p>
+<blockquote>
+<p>mysql8 去掉了索引隐式排序，输出结果不是排好序的</p>
+</blockquote>
+<p><img src="E:\我的\学习文档\md-pic\image-20210913164524289.png" srcset="/img/loading.gif" lazyload alt="image-20210913164524289"></p>
+<p><img src="E:\我的\学习文档\md-pic\v2-0deb7c3dff1051fee85baf6daa4bd219_r.jpg" srcset="/img/loading.gif" lazyload alt="preview"></p>
+<h4 id="开启慢sql日志"><a href="#开启慢sql日志" class="headerlink" title="开启慢sql日志"></a>开启慢sql日志</h4><h4 id="in是否走索引"><a href="#in是否走索引" class="headerlink" title="in是否走索引"></a>in是否走索引</h4><p><img src="E:\我的\学习文档\md-pic\72e166eb2f36e62147102324737713ae.png" srcset="/img/loading.gif" lazyload alt="Mysql中in到底走不走索引？"></p>
+<blockquote>
+<p>in通常是走索引的，当in后面的数据在数据表中超过30%（上面的例子的匹配数据大约6000&#x2F;16000 &#x3D; 37.5%）的匹配时，会走全表扫描，即不走索引，因此in走不走索引和后面的数据有关系。</p>
+</blockquote>
+<h4 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h4> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">abc组成复合索引<br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> myTest <span class="hljs-keyword">where</span> a<span class="hljs-operator">=</span><span class="hljs-number">3</span> <span class="hljs-keyword">and</span> b<span class="hljs-operator">&gt;</span><span class="hljs-number">7</span> <span class="hljs-keyword">and</span> c<span class="hljs-operator">=</span><span class="hljs-number">3</span>;   b范围值，断点，阻塞了c的索引<br>a用到了，b也用到了，c没有用到，这个地方b是范围值，也算断点，只不过自身用到了索引<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="关于Filtered思考"><a href="#关于Filtered思考" class="headerlink" title="关于Filtered思考"></a>关于Filtered思考</h4><blockquote>
+<p>猜一下下面两个执行计划，哪个执行的速度快</p>
+</blockquote>
+<p><img src="E:\我的\学习文档\md-pic\github代理设置" srcset="/img/loading.gif" lazyload alt="image-20210915105648825"></p>
+<p><img src="E:\我的\学习文档\md-pic\image-20210915105716719.png" srcset="/img/loading.gif" lazyload alt="image-20210915105716719"></p>
+<h4 id="sql执行过程"><a href="#sql执行过程" class="headerlink" title="sql执行过程"></a>sql执行过程</h4><p><img src="E:\我的\学习文档\md-pic\image-20210917124742511.png" srcset="/img/loading.gif" lazyload alt="image-20210917124742511"></p>
+<p><img src="E:\我的\学习文档\md-pic\image-20210917131933892.png" srcset="/img/loading.gif" lazyload alt="image-20210917131933892"></p>
+<p><img src="E:\我的\学习文档\md-pic\image-20210917132055995.png" srcset="/img/loading.gif" lazyload alt="image-20210917132055995"></p>
+<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><blockquote>
+<p>MySQL 5.6 引入的索引下推优化（index condition pushdown)， 可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</p>
+<p>需求：检索出表中“名字第一个字是张，而且年龄是10岁的所有男孩”;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> tuser <span class="hljs-keyword">where</span> name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;张%&#x27;</span> <span class="hljs-keyword">and</span> age<span class="hljs-operator">=</span><span class="hljs-number">10</span> <span class="hljs-keyword">and</span> ismale<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><p>无索引下推的执行过程</p>
+<p><img src="E:\我的\学习文档\md-pic\1202638-20190902232835378-374770770.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+<li><p>有索引下推的执行过程</p>
+<p><img src="E:\我的\学习文档\md-pic\1202638-20190902233108725-1148703041.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+</ul>
+<h4 id="普通索引与唯一索引"><a href="#普通索引与唯一索引" class="headerlink" title="普通索引与唯一索引"></a>普通索引与唯一索引</h4><ul>
+<li><p>针对查询来说，普通索引与唯一索引的性能差距微乎其微，可以忽略不计</p>
+</li>
+<li><p>对于更新操作来说，如果要更新的数据不在内存中</p>
+<ul>
+<li>普通索引的操作是直接更新记录在change buffer中，语句执行结束</li>
+<li>唯一索引的操作是&#x3D;&#x3D;需要将数据页读入到内存(所以说唯一索引是用不到change buffer的)，判断是否有冲突&#x3D;&#x3D;，插入值，语句执行结束</li>
+</ul>
+<blockquote>
+<p>假设一个业务的更新模式是写入之后马上会做查询，那么即使满足了条件，将更新先记录在change buffer，但之后由于马上要访问这个数据页，会立即触发merge过程。这样随机访问IO的次数不会减少，反而增加了change buffer的维护代价。所以，对于这种业务模式来说，change buffer反而起到了副作用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 查询事务隔离级别<br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;transaction_isolation&#x27;</span>;<br># 查询binlog文件列表<br><span class="hljs-keyword">show</span> <span class="hljs-type">binary</span> logs;<br># 查询当前正在使用的binlog文件<br><span class="hljs-keyword">show</span> master status;<br># 查询binlog文件内容<br><span class="hljs-keyword">show</span> binlog events <span class="hljs-keyword">in</span> <span class="hljs-string">&#x27;binlog_name&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h4><p><img src="E:\我的\学习文档\md-pic\image-20210920103933336.png" srcset="/img/loading.gif" lazyload alt="image-20210920103933336"></p>
+<h4 id="主从架构"><a href="#主从架构" class="headerlink" title="主从架构"></a>主从架构</h4><p><img src="E:\我的\学习文档\md-pic\image-20210920133348526.png" srcset="/img/loading.gif" lazyload alt="image-20210920133348526"></p>
+<h5 id="一主一从"><a href="#一主一从" class="headerlink" title="一主一从"></a>一主一从</h5><blockquote>
+<p>从节点做热备，当主节点挂掉后，从节点升级为新的主节点；&#x3D;&#x3D;一主一从并不是为了提高性能，而是为了保证服务的高可用&#x3D;&#x3D;</p>
+</blockquote>
+<h5 id="一主多从"><a href="#一主多从" class="headerlink" title="一主多从"></a>一主多从</h5><blockquote>
+<p>通常一个主节点，2到4个从节点，过多的从节点会给数据同步带来压力，导致性能下降；</p>
+<p>如果是4个从节点，3个从节点作为数据同步，1个从节点专门用来处理耗时较长的查询或者专门用于开发人员处理线上问题</p>
+</blockquote>
+<h4 id="MYISAM"><a href="#MYISAM" class="headerlink" title="MYISAM"></a>MYISAM</h4><blockquote>
+<p>.myi 存储索引</p>
+<p>.myd 存储数据</p>
+<p>.frm 存储表结构数据</p>
+<p>MYISAM数据与索引分开存储，查询的时候先根据索引查询数据文件地址，再根据地址去获取相应数据</p>
+</blockquote>
+<h4 id="INNODB"><a href="#INNODB" class="headerlink" title="INNODB"></a>INNODB</h4><blockquote>
+<p>.ibd 存储索引和数据</p>
+<p>.frm 存储表结构数据</p>
+</blockquote>
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><p><img src="E:\我的\学习文档\md-pic\image-20210920225014283.png" srcset="/img/loading.gif" lazyload alt="image-20210920225014283"></p>
+<p>&#x3D;&#x3D;主从复制的过程中，最耗时的操作就是SQL Thread向数据库中写的过程，因为是随机IO；其他的过程都是顺序IO；为了解决随机IO的问题，mysql使用的是MTS，并制定了规则来保证数据的原子性&#x3D;&#x3D;</p>
+<blockquote>
+<p>MTS(multi-thread slave)</p>
+<p>规则：</p>
+<ol>
+<li>更新同一行的多个事务，必须要分发到同一个worker中执行</li>
+<li>同一个事务不能被拆开执行，必须放在同一个worker中执行</li>
+</ol>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 从库<span class="hljs-keyword">SQL</span>线程并行执行的粒度<br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%paralle%&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">------------------------------+----------+</span><br><span class="hljs-operator">|</span> Variable_name                <span class="hljs-operator">|</span> <span class="hljs-keyword">Value</span>    <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------------------------+----------+</span><br><span class="hljs-operator">|</span> innodb_parallel_read_threads <span class="hljs-operator">|</span> <span class="hljs-number">4</span>        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> slave_parallel_type          <span class="hljs-operator">|</span> DATABASE <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> slave_parallel_workers       <span class="hljs-operator">|</span> <span class="hljs-number">0</span>        <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------------------------+----------+</span><br><br># 设置线程个数<br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> slave_parallel_workers <span class="hljs-operator">=</span><span class="hljs-number">4</span>;<br><br># 设置并行执行粒度，database：库级别或者logical_check：行级别<br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> slave_parallel_type<span class="hljs-operator">=</span><span class="hljs-string">&#x27;logical_check&#x27;</span>;<br><br># 开启slave<br><span class="hljs-keyword">start</span> slave<br># 查看线程数<br><span class="hljs-keyword">show</span> <span class="hljs-keyword">full</span> processlist;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>GTID 全局事务id</li>
+</ul>
+<h4 id="组提交"><a href="#组提交" class="headerlink" title="组提交"></a>组提交</h4><blockquote>
+<p>组提交（group commit）是mysql处理日志的一种优化方式，主要为了解决写日志时频繁刷磁盘的问题。目前已经支持bin log和redo log 的组提交</p>
+</blockquote>
+<p>RC解决脏读问题，是当前读</p>
+<p>RR解决不可重复读，是快照读</p>
+<ul>
+<li>当前读：读取的是最新数据</li>
+<li>快照读：读取的是历史数据</li>
+</ul>
+<h4 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h4><ul>
+<li>readview：当进行快照读的时候会生成一个事务id的列表，来保存不同的信息，通过这些信息来做可见性判断<ul>
+<li>list: 生成readview的时候活跃的id</li>
+<li>up_limit_id: 当前活跃id的最小值</li>
+<li>lower_limit_id：尚未分配的下一个事务id</li>
+</ul>
+</li>
+</ul>
+<p>RC：每次快照读的时候生成新的read view</p>
+<p>RR：第一次生成快照读的时候生成read view，后续不会变<img src="E:\我的\学习文档\md-pic\image-20210921003456750.png" srcset="/img/loading.gif" lazyload alt="image-20210921003456750"></p>
+<p>历史版本保存在undolog中</p>
+<p>Innodb存储引擎每次在进行数据插入的时候，数据必须要跟某一个索引列绑定在一起，这个索引列选择的顺序：主键-&gt;唯一键-&gt;自动生成一个6字节的rowid</p>
+<p>脏读：一个事务读取到了另一个事务没有提交的数据</p>
+<p>幻读：如果所有的读取都是快照读，那么不会产生幻读问题，如果有快照读也有当前读才会产生幻读问题。</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li><p>BST(Binary Search Trees) 二叉搜索树</p>
+<ul>
+<li>左右子树高度差没有限制，当插入递增数据时，数据结构变成了链表，搜索效率低</li>
+</ul>
+</li>
+<li><p>AVL Trees(Balanced binary search trees) 平衡二叉搜索树</p>
+<ul>
+<li>左右子树高度差不能大于一</li>
+<li>当左右子树高度差大于一时，会进行数据旋转（为了提升查询性能，造成数据插入性能下降）</li>
+</ul>
+</li>
+<li><p>Red-Black Trees 红黑树</p>
+<ul>
+<li>最长子树不能超过最短子树的两倍，对查询与插入性能做了一个平衡</li>
+</ul>
+</li>
+<li><p>B Tree</p>
+<p><img src="E:\我的\学习文档\md-pic\b-trees.png" srcset="/img/loading.gif" lazyload alt="image-20210924105433583"></p>
+</li>
+<li><p>B+ Tree</p>
+<p><img src="E:\我的\学习文档\md-pic\b+trees.png" srcset="/img/loading.gif" lazyload alt="image-20210924105213979"></p>
+</li>
+</ul>
+<h4 id="B树与B-树的区别"><a href="#B树与B-树的区别" class="headerlink" title="B树与B+树的区别"></a>B树与B+树的区别</h4><blockquote>
+<ol>
+<li>B+树叶子节点会将所有非叶子节点的树进行冗余，在mysql将所有的数据存储在叶子节点，非叶子节点只存索引</li>
+<li></li>
+</ol>
+</blockquote>
+<h4 id="页分裂与页合并"><a href="#页分裂与页合并" class="headerlink" title="页分裂与页合并"></a>页分裂与页合并</h4><blockquote>
+<p>主键索引用自增的好处是减少页分裂与页合并</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/05/16/DB/MYSQL优化笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>UncleBryan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/16/Middleware/mybatis/Mybatis%E5%BC%80%E5%90%AFSQL%E8%BE%93%E5%87%BA/" title="Mybatis开启日志输出">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mybatis开启日志输出</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/16/bug/qos/" title="qos-server can not bind localhost:22222">
+                        <span class="hidden-mobile">qos-server can not bind localhost:22222</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","appKey":"pfnSBUqV0Q7IFon0bcBvyUZS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://0alowe3l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

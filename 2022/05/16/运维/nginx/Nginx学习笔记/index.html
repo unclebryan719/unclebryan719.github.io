@@ -18,7 +18,7 @@
   
     <meta name="description" content="Nginx学习笔记正向代理与反向代理正向代理：代理客户端，代理软件安装在客户端，比如vpn翻墙  反向代理：代理服务端，代理软件安装在服务端，比如Nginx做服务器端的负载均衡，请求转发。  iphash iphash对客户端请求的ip进行hash操作，然后根据hash结果将同一个客户端ip的请求分发到同一台服务器进行处理，可以解决session不共享的问题。 但是一般不用上述方式做session">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Life is good">
+<meta property="og:title" content="Nginx学习笔记">
 <meta property="og:url" content="http://example.com/2022/05/16/%E8%BF%90%E7%BB%B4/nginx/Nginx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Life is good">
 <meta property="og:description" content="Nginx学习笔记正向代理与反向代理正向代理：代理客户端，代理软件安装在客户端，比如vpn翻墙  反向代理：代理服务端，代理软件安装在服务端，比如Nginx做服务器端的负载均衡，请求转发。  iphash iphash对客户端请求的ip进行hash操作，然后根据hash结果将同一个客户端ip的请求分发到同一台服务器进行处理，可以解决session不共享的问题。 但是一般不用上述方式做session">
@@ -26,14 +26,15 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h14gt4y4irj20za0mgdhw.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h14gstoslzj21320outb6.jpg">
 <meta property="article:published_time" content="2022-05-16T15:44:30.465Z">
-<meta property="article:modified_time" content="2022-10-12T15:08:16.620Z">
+<meta property="article:modified_time" content="2022-10-12T16:07:22.525Z">
 <meta property="article:author" content="UncleBryan">
+<meta property="article:tag" content="Nginx">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h14gt4y4irj20za0mgdhw.jpg">
   
   
   
-  <title>Life is good</title>
+  <title>Nginx学习笔记 - Life is good</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="Nginx学习笔记"></span>
           
         </div>
 
@@ -295,7 +296,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">Nginx学习笔记</h1>
             
             
               <div class="markdown-body">
@@ -337,6 +338,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nginx/" class="category-chain-item">Nginx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Nginx/">#Nginx</a>
+      
+    </div>
   
 </div>
 
@@ -346,7 +375,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>Nginx学习笔记</div>
       <div>http://example.com/2022/05/16/运维/nginx/Nginx学习笔记/</div>
     </div>
     <div class="license-meta">
@@ -391,9 +420,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/16/%E8%BF%90%E7%BB%B4/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BA%92%E8%81%94/" title="">
+                      <a href="/2022/05/16/%E8%BF%90%E7%BB%B4/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BA%92%E8%81%94/" title="多台电脑的虚拟机互联">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">多台电脑的虚拟机互联</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -401,8 +430,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/16/%E5%AE%B9%E5%99%A8%E5%8C%96/Kubernetes/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2022/05/16/%E8%BF%90%E7%BB%B4/github%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" title="Github代理设置">
+                        <span class="hidden-mobile">Github代理设置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
