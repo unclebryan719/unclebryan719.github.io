@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="UncleBryan">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Swagger使用说明QuickStart官网 Swagger: http:&#x2F;&#x2F;springfox.github.io&#x2F;springfox&#x2F;docs&#x2F;current&#x2F; Knife4j: https:&#x2F;&#x2F;doc.xiaominfo.com&#x2F;  相关依赖123456789101112&lt;!-- swagger3 --&gt;&lt;dependency&gt;  &lt;groupId&gt;io">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Life is good">
+<meta property="og:url" content="http://example.com/2022/08/22/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/swagger%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Life is good">
+<meta property="og:description" content="Swagger使用说明QuickStart官网 Swagger: http:&#x2F;&#x2F;springfox.github.io&#x2F;springfox&#x2F;docs&#x2F;current&#x2F; Knife4j: https:&#x2F;&#x2F;doc.xiaominfo.com&#x2F;  相关依赖123456789101112&lt;!-- swagger3 --&gt;&lt;dependency&gt;  &lt;groupId&gt;io">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-22T02:49:28.943Z">
+<meta property="article:modified_time" content="2022-09-02T06:48:59.613Z">
+<meta property="article:author" content="UncleBryan">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Life is good</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","app_key":"pfnSBUqV0Q7IFon0bcBvyUZS","server_url":"https://0alowe3l.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Bryan&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-22 10:49" pubdate>
+          2022年8月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          147 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Swagger使用说明"><a href="#Swagger使用说明" class="headerlink" title="Swagger使用说明"></a>Swagger使用说明</h1><h2 id="QuickStart"><a href="#QuickStart" class="headerlink" title="QuickStart"></a>QuickStart</h2><h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><blockquote>
+<p>Swagger: <a target="_blank" rel="noopener" href="http://springfox.github.io/springfox/docs/current/">http://springfox.github.io/springfox/docs/current/</a></p>
+<p>Knife4j: <a target="_blank" rel="noopener" href="https://doc.xiaominfo.com/">https://doc.xiaominfo.com/</a></p>
+</blockquote>
+<h3 id="相关依赖"><a href="#相关依赖" class="headerlink" title="相关依赖"></a>相关依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- swagger3 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-comment">&lt;!-- knife4j --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.xiaoymin<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>knife4j-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Swagger相关配置"><a href="#Swagger相关配置" class="headerlink" title="Swagger相关配置"></a>Swagger相关配置</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># ===== 自定义swagger配置 ===== #</span><br><span class="hljs-comment"># 是否开启swagger，生产环境一般关闭</span><br><span class="hljs-attr">swagger.enable</span>=<span class="hljs-string">true</span><br><span class="hljs-comment"># title</span><br><span class="hljs-attr">swagger.application-name</span>= <span class="hljs-string">$&#123;spring.application.name&#125;</span><br><span class="hljs-comment"># 接口文档版本</span><br><span class="hljs-attr">swagger.application-version</span>=<span class="hljs-string">1.0</span><br><span class="hljs-comment"># 文档描述</span><br><span class="hljs-attr">swagger.application-description</span>=<span class="hljs-string">swagger测试文档描述</span><br><span class="hljs-comment"># 联系人</span><br><span class="hljs-attr">swagger.contact-name</span>=<span class="hljs-string">王宝建</span><br><span class="hljs-comment"># 联系人邮箱</span><br><span class="hljs-attr">swagger.contact-email</span>=<span class="hljs-string">wangbaojian@okay.cn</span><br><span class="hljs-comment"># 组织地址</span><br><span class="hljs-attr">swagger.terms-url</span>=<span class="hljs-string">https://okos.yuque.com</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 开启knife4j增强功能</span><br><span class="hljs-attr">knife4j.enable</span>=<span class="hljs-string">true</span><br><span class="hljs-comment"># 开启basic身份认证功能</span><br><span class="hljs-attr">knife4j.basic.enable</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">knife4j.basic.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">knife4j.basic.password</span>=<span class="hljs-string">123456</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Swagger配置类"><a href="#Swagger配置类" class="headerlink" title="Swagger配置类"></a>Swagger配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.PathSelectors;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.RequestParameterBuilder;<br><span class="hljs-keyword">import</span> springfox.documentation.oas.annotations.EnableOpenApi;<br><span class="hljs-keyword">import</span> springfox.documentation.service.ApiInfo;<br><span class="hljs-keyword">import</span> springfox.documentation.service.Contact;<br><span class="hljs-keyword">import</span> springfox.documentation.service.RequestParameter;<br><span class="hljs-keyword">import</span> springfox.documentation.spi.DocumentationType;<br><span class="hljs-keyword">import</span> springfox.documentation.spring.web.plugins.Docket;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> unclebryan</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@project</span> ok-app-web</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022/8/19 19:39:48</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-comment">// @EnableOpenApi目的是导入OpenApiDocumentationConfiguration.class，可以省略，因为在starter中已经自动配置了OpenApiAutoConfiguration(在该类中导入了OpenApiDocumentationConfiguration.class)</span><br><span class="hljs-meta">@EnableOpenApi</span><br><span class="hljs-meta">@ConfigurationProperties(&quot;swagger&quot;)</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwaggerConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否开启swagger，生产环境一般关闭</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Boolean enable;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目应用名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目版本信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationVersion;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目描述信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationDescription;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 联系人姓名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String contactName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 联系人邮箱</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String contactEmail;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 组织地址</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Value(&quot;https://okos.yuque.com/dashboard&quot;)</span><br>    <span class="hljs-keyword">private</span> String termsUrl;<br><br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Docket <span class="hljs-title function_">docket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//添加head参数</span><br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">tokenPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">requestIdPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">systemIdPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        List&lt;RequestParameter&gt; pars = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;RequestParameter&gt;();<br>        tokenPar.name(<span class="hljs-string">&quot;token&quot;</span>).description(<span class="hljs-string">&quot;token&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        requestIdPar.name(<span class="hljs-string">&quot;requestid&quot;</span>).description(<span class="hljs-string">&quot;requestid&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        systemIdPar.name(<span class="hljs-string">&quot;systemId&quot;</span>).description(<span class="hljs-string">&quot;systemId&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        pars.add(tokenPar.build());<br>        pars.add(requestIdPar.build());<br>        pars.add(systemIdPar.build());<br><br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Docket</span>(DocumentationType.OAS_30)<br>                .enable(enable)<br>                .select()<br>                <span class="hljs-comment">// 扫描的包路径</span><br>                .apis(<br>                        RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.noriental.okapp.module.coupon.controller&quot;</span>)<br>                                .or(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.noriental.okapp.module.user.v1.controller&quot;</span>))<br>                )<br>                <span class="hljs-comment">// 定义要生成文档的Api的url路径规则</span><br>                .paths(<br>                        PathSelectors.ant(<span class="hljs-string">&quot;/v1/**&quot;</span>)<br>                                .and(PathSelectors.ant(<span class="hljs-string">&quot;/v1/coupon/**&quot;</span>))<br>                )<br>                .build()<br>                .globalRequestParameters(pars)<br>          			<span class="hljs-comment">// 可以忽略一些不需要的参数类型</span><br>                .ignoredParameterTypes(HttpSession.class)<br>                <span class="hljs-comment">// 设置swagger-ui.html页面上的一些元素信息。</span><br>                .apiInfo(apiInfo());<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title function_">apiInfo</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiInfoBuilder</span>()<br>                .title(applicationName)<br>                .description(applicationDescription)<br>                .version(applicationVersion)<br>                .contact(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Contact</span>(contactName,<span class="hljs-string">&quot;&quot;</span>,contactEmail))<br>                .termsOfServiceUrl(termsUrl)<br>                .build();<br>    &#125;<br>  <br>  <span class="hljs-comment">// SwaggerUiWebMvcConfigurer中也对下面做了一些配置</span><br>  <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addResourceHandlers</span><span class="hljs-params">(ResourceHandlerRegistry registry)</span> &#123;<br>        registry.addResourceHandler(<span class="hljs-string">&quot;/**&quot;</span>).addResourceLocations(<span class="hljs-string">&quot;classpath:/static/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;swagger-ui.html&quot;</span>)<br>                .addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;doc.html&quot;</span>).addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;/webjars/**&quot;</span>)<br>                .addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/webjars/&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="匹配规则说明"><a href="#匹配规则说明" class="headerlink" title="匹配规则说明"></a>匹配规则说明</h3><ol>
+<li><p>包匹配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">apis(<br>  RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.noriental.okapp.module.coupon.controller&quot;</span>)    .or(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.noriental.okapp.module.user.v1.controller&quot;</span>)))<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>路径匹配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">paths(<br>                        PathSelectors.ant(<span class="hljs-string">&quot;/v1/**&quot;</span>)<br>                                .and(PathSelectors.ant(<span class="hljs-string">&quot;/v1/coupon/**&quot;</span>))<br>                )<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>正则匹配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">paths(<br>                        PathSelectors.regex(<span class="hljs-string">&quot;/v1/**&quot;</span>)<br>                                .and(PathSelectors.regex(<span class="hljs-string">&quot;/v1/coupon/**&quot;</span>))<br>                )<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>不匹配</p>
+<blockquote>
+<p>使用<code>@ApiIgnore</code>注解，即可忽略不需要进行Swagger的类或者方法，如可以屏蔽跑数据的接口</p>
+<p>同时，该注解还可以忽略不需要的参数，如 <code>(@RequestBody @Valid RequestEntity&lt;CouponRequest&gt; request, @ApiIgnore HttpSession session)</code></p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p><strong>PS. 以上操作均可以通过Predicate的negate()方法进行取反操作</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">.paths(<br>        PathSelectors.ant(<span class="hljs-string">&quot;/v1/**&quot;</span>)<br>                .and(PathSelectors.ant(<span class="hljs-string">&quot;/v1/coupon/**&quot;</span>).negate())<br>)<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="文档访问地址"><a href="#文档访问地址" class="headerlink" title="文档访问地址"></a>文档访问地址</h3><blockquote>
+<p>swagger</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8999/swagger-ui/index.html">http://localhost:8999/swagger-ui/index.html</a></p>
+<p>Knief4j</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8999/doc.html">http://localhost:8999/doc.html</a></p>
+</blockquote>
+<h2 id="认证与授权（可选）"><a href="#认证与授权（可选）" class="headerlink" title="认证与授权（可选）"></a>认证与授权（可选）</h2><h3 id="相关依赖-1"><a href="#相关依赖-1" class="headerlink" title="相关依赖"></a>相关依赖</h3><blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.security.oauth.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-security-oauth2-autoconfigure<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h3><h4 id="授权服务配置类"><a href="#授权服务配置类" class="headerlink" title="授权服务配置类"></a>授权服务配置类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.noriental.okapp.config;<br><br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.core.annotation.Order;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.AuthenticationManager;<br><span class="hljs-keyword">import</span> org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;<br><span class="hljs-keyword">import</span> org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;<br><span class="hljs-keyword">import</span> org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;<br><span class="hljs-keyword">import</span> org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;<br><span class="hljs-keyword">import</span> org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;<br><span class="hljs-keyword">import</span> org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 2020/10/25 9:20</span><br><span class="hljs-comment"> * 授权服务</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableAuthorizationServer</span><br><span class="hljs-meta">@Order(404)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthConfiguration</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AuthorizationServerConfigurerAdapter</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AuthenticationManager authenticationManager;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> BCryptPasswordEncoder bCryptPasswordEncoder;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">AuthConfiguration</span><span class="hljs-params">(AuthenticationManager authenticationManager, BCryptPasswordEncoder bCryptPasswordEncoder)</span> &#123;<br>        <span class="hljs-built_in">this</span>.authenticationManager = authenticationManager;<br>        <span class="hljs-built_in">this</span>.bCryptPasswordEncoder = bCryptPasswordEncoder;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthorizationServerEndpointsConfigurer endpoints)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        endpoints.authenticationManager(authenticationManager);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(ClientDetailsServiceConfigurer clients)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//授权码模式（authorization code）</span><br>        <span class="hljs-comment">//简化模式（implicit）</span><br>        <span class="hljs-comment">//密码模式（resource owner password credentials）</span><br>        <span class="hljs-comment">//客户端模式（client credentials）</span><br><br>        <span class="hljs-comment">// 内存模式存储token</span><br>        clients.inMemory()<br>            .withClient(<span class="hljs-string">&quot;okay&quot;</span>).secret(bCryptPasswordEncoder.encode(<span class="hljs-string">&quot;123&quot;</span>))<br>                <span class="hljs-comment">//.authorizedGrantTypes(&quot;implicit&quot;)</span><br>                .authorizedGrantTypes(<span class="hljs-string">&quot;authorization_code&quot;</span>)<br>                <span class="hljs-comment">//.authorizedGrantTypes(&quot;password&quot;)</span><br>                <span class="hljs-comment">//.authorizedGrantTypes(&quot;client_credentials&quot;)</span><br>                .redirectUris(<br>                        <span class="hljs-comment">// knife4j 授权地址</span><br>                        <span class="hljs-string">&quot;http://localhost:8999/webjars/oauth/oauth2.html&quot;</span>,<br>                        <span class="hljs-comment">// swagger 授权地址</span><br>                        <span class="hljs-string">&quot;http://localhost:8999/swagger-ui/oauth2-redirect.html&quot;</span>)<br>                .scopes(<span class="hljs-string">&quot;read&quot;</span>,<span class="hljs-string">&quot;write&quot;</span>,<span class="hljs-string">&quot;reads&quot;</span>,<span class="hljs-string">&quot;writes&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthorizationServerSecurityConfigurer security)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        security<br>                .tokenKeyAccess(<span class="hljs-string">&quot;permitAll()&quot;</span>)<br>                .checkTokenAccess(<span class="hljs-string">&quot;permitAll()&quot;</span>)<br>                .allowFormAuthenticationForClients();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="认证服务配置类"><a href="#认证服务配置类" class="headerlink" title="认证服务配置类"></a>认证服务配置类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.noriental.okapp.config;<br><br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.core.annotation.Order;<br><span class="hljs-keyword">import</span> org.springframework.security.authentication.AuthenticationManager;<br><span class="hljs-keyword">import</span> org.springframework.security.config.BeanIds;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;<br><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;<br><span class="hljs-keyword">import</span> org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 认证服务</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> unclebryan</span><br><span class="hljs-comment"> * 2022年08月31日19:26:58</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@Order(300)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SecurityWebConfiguration</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">WebSecurityConfigurerAdapter</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@Bean(name = BeanIds.AUTHENTICATION_MANAGER)</span><br>    <span class="hljs-keyword">public</span> AuthenticationManager <span class="hljs-title function_">authenticationManagerBean</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>.authenticationManagerBean();<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> BCryptPasswordEncoder <span class="hljs-title function_">passwordEncoder</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BCryptPasswordEncoder</span>();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        http.csrf().disable();<br>        http<br>                .authorizeRequests()<br>                .antMatchers(<span class="hljs-string">&quot;/v1/coupon/**&quot;</span>).hasAnyAuthority(<span class="hljs-string">&quot;coupon&quot;</span>,<span class="hljs-string">&quot;ROLE_TEST&quot;</span>,<span class="hljs-string">&quot;ROLE_ADMIN&quot;</span>)<br>                .antMatchers(<span class="hljs-string">&quot;/v1/**&quot;</span>).hasAnyRole(<span class="hljs-string">&quot;TEST&quot;</span>,<span class="hljs-string">&quot;ADMIN&quot;</span>)<br>                .anyRequest().authenticated()<br>                .and()<br>                .formLogin().permitAll();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        auth.inMemoryAuthentication()<br>            .passwordEncoder(passwordEncoder())<br>            .withUser(<span class="hljs-string">&quot;admin&quot;</span>).password(passwordEncoder().encode(<span class="hljs-string">&quot;123&quot;</span>)).roles(<span class="hljs-string">&quot;ADMIN&quot;</span>)<br>            .and()<br>            .withUser(<span class="hljs-string">&quot;bryan&quot;</span>).password(passwordEncoder().encode(<span class="hljs-string">&quot;123&quot;</span>)).roles(<span class="hljs-string">&quot;TEST&quot;</span>)<br>            .and()<br>            .withUser(<span class="hljs-string">&quot;lijing&quot;</span>).password(passwordEncoder().encode(<span class="hljs-string">&quot;123&quot;</span>)).authorities(<span class="hljs-string">&quot;coupon&quot;</span>)<br>        ;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="Swagger配置类-1"><a href="#Swagger配置类-1" class="headerlink" title="Swagger配置类"></a>Swagger配置类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.noriental.okapp.config;<br><br><span class="hljs-keyword">import</span> com.google.common.collect.Lists;<br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;<br><span class="hljs-keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;<br><span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;<br><span class="hljs-keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.OAuthBuilder;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.PathSelectors;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;<br><span class="hljs-keyword">import</span> springfox.documentation.builders.RequestParameterBuilder;<br><span class="hljs-keyword">import</span> springfox.documentation.service.ApiInfo;<br><span class="hljs-keyword">import</span> springfox.documentation.service.AuthorizationCodeGrant;<br><span class="hljs-keyword">import</span> springfox.documentation.service.AuthorizationScope;<br><span class="hljs-keyword">import</span> springfox.documentation.service.Contact;<br><span class="hljs-keyword">import</span> springfox.documentation.service.GrantType;<br><span class="hljs-keyword">import</span> springfox.documentation.service.OAuth;<br><span class="hljs-keyword">import</span> springfox.documentation.service.RequestParameter;<br><span class="hljs-keyword">import</span> springfox.documentation.service.SecurityReference;<br><span class="hljs-keyword">import</span> springfox.documentation.service.SecurityScheme;<br><span class="hljs-keyword">import</span> springfox.documentation.service.TokenEndpoint;<br><span class="hljs-keyword">import</span> springfox.documentation.service.TokenRequestEndpoint;<br><span class="hljs-keyword">import</span> springfox.documentation.spi.DocumentationType;<br><span class="hljs-keyword">import</span> springfox.documentation.spi.service.contexts.SecurityContext;<br><span class="hljs-keyword">import</span> springfox.documentation.spring.web.plugins.Docket;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.LinkedHashSet;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Set;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> unclebryan</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@project</span> ok-app-web</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022/8/19 19:39:48</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@ConfigurationProperties(&quot;swagger&quot;)</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwaggerConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">WebMvcConfigurer</span>  &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否开启swagger，生产环境一般关闭</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> Boolean enable;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目应用名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目版本信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationVersion;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目描述信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String applicationDescription;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 联系人姓名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String contactName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 联系人邮箱</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String contactEmail;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 组织地址</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Value(&quot;https://okos.yuque.com/dashboard&quot;)</span><br>    <span class="hljs-keyword">private</span> String termsUrl;<br><br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Docket <span class="hljs-title function_">docket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Docket</span>(DocumentationType.SWAGGER_2)<br>                .enable(enable)<br>                .useDefaultResponseMessages(<span class="hljs-literal">false</span>)<br>                .select()<br>                .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.noriental.okapp.module&quot;</span>))<br>                <span class="hljs-comment">// 扫描的包路径</span><br>                .build()<br>                <span class="hljs-comment">// 支持的通讯协议集合</span><br>                .protocols(newHashSet(<span class="hljs-string">&quot;https&quot;</span>, <span class="hljs-string">&quot;http&quot;</span>))<br>                .securitySchemes(getSecuritySchemes())<br>                .securityContexts(getSecurityContexts())<br>                .globalRequestParameters(getParameters())<br>                <span class="hljs-comment">// 设置swagger-ui.html页面上的一些元素信息。</span><br>                .apiInfo(apiInfo());<br>    &#125;<br><br><br><br>    <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title function_">apiInfo</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiInfoBuilder</span>()<br>                .title(applicationName)<br>                .description(applicationDescription)<br>                .version(applicationVersion)<br>                .contact(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Contact</span>(contactName,<span class="hljs-string">&quot;&quot;</span>,contactEmail))<br>                .termsOfServiceUrl(termsUrl)<br>                .build();<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 设置请求头参数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> List&lt;RequestParameter&gt; <span class="hljs-title function_">getParameters</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//添加head参数</span><br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">tokenPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">requestIdPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        <span class="hljs-type">RequestParameterBuilder</span> <span class="hljs-variable">systemIdPar</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RequestParameterBuilder</span>();<br>        List&lt;RequestParameter&gt; parameters = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;RequestParameter&gt;();<br>        tokenPar.name(<span class="hljs-string">&quot;token&quot;</span>).description(<span class="hljs-string">&quot;token&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        requestIdPar.name(<span class="hljs-string">&quot;requestid&quot;</span>).description(<span class="hljs-string">&quot;requestid&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        systemIdPar.name(<span class="hljs-string">&quot;systemId&quot;</span>).description(<span class="hljs-string">&quot;systemId&quot;</span>)<br>                .in(<span class="hljs-string">&quot;header&quot;</span>)<br>                .required(<span class="hljs-literal">false</span>)<br>                .build();<br>        parameters.add(tokenPar.build());<br>        parameters.add(requestIdPar.build());<br>        parameters.add(systemIdPar.build());<br>        <span class="hljs-keyword">return</span> parameters;<br>    &#125;<br><br><br>    <span class="hljs-meta">@SafeVarargs</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> &lt;T&gt; Set&lt;T&gt; <span class="hljs-title function_">newHashSet</span><span class="hljs-params">(T... ts)</span> &#123;<br>        <span class="hljs-keyword">if</span> (ts.length &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashSet</span>&lt;&gt;(Arrays.asList(ts));<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 认证模式</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> List&lt;SecurityScheme&gt; <span class="hljs-title function_">getSecuritySchemes</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//schema</span><br>        List&lt;GrantType&gt; grantTypes=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-comment">//授权码模式AuthorizationCodeGrant</span><br>        TokenRequestEndpoint tokenRequestEndpoint=<span class="hljs-keyword">new</span> <span class="hljs-title class_">TokenRequestEndpoint</span>(<span class="hljs-string">&quot;/oauth/authorize&quot;</span>,<span class="hljs-string">&quot;okay&quot;</span>,<span class="hljs-string">&quot;123&quot;</span>);<br>        TokenEndpoint tokenEndpoint=<span class="hljs-keyword">new</span> <span class="hljs-title class_">TokenEndpoint</span>(<span class="hljs-string">&quot;/oauth/token&quot;</span>,<span class="hljs-string">&quot;access_token&quot;</span>);<br>        AuthorizationCodeGrant authorizationCodeGrant=<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationCodeGrant</span>(tokenRequestEndpoint,tokenEndpoint);<br>        grantTypes.add(authorizationCodeGrant);<br>        OAuth oAuth=<span class="hljs-keyword">new</span> <span class="hljs-title class_">OAuthBuilder</span>().name(<span class="hljs-string">&quot;oauth2&quot;</span>)<br>                .grantTypes(grantTypes).build();<br>        List&lt;SecurityScheme&gt; securitySchemes=Lists.newArrayList(oAuth);<br>        <span class="hljs-keyword">return</span> securitySchemes;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 认证的安全上下文</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> List&lt;SecurityContext&gt; <span class="hljs-title function_">getSecurityContexts</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//context</span><br>        <span class="hljs-comment">//scope方位</span><br>        List&lt;AuthorizationScope&gt; scopes=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        scopes.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationScope</span>(<span class="hljs-string">&quot;read&quot;</span>,<span class="hljs-string">&quot;read  resources&quot;</span>));<br>        scopes.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationScope</span>(<span class="hljs-string">&quot;write&quot;</span>,<span class="hljs-string">&quot;write resources&quot;</span>));<br>        scopes.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationScope</span>(<span class="hljs-string">&quot;reads&quot;</span>,<span class="hljs-string">&quot;read all resources&quot;</span>));<br>        scopes.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationScope</span>(<span class="hljs-string">&quot;writes&quot;</span>,<span class="hljs-string">&quot;write all resources&quot;</span>));<br><br>        SecurityReference securityReference=<span class="hljs-keyword">new</span> <span class="hljs-title class_">SecurityReference</span>(<span class="hljs-string">&quot;oauth2&quot;</span>,scopes.toArray(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AuthorizationScope</span>[]&#123;&#125;));<br>        SecurityContext securityContext=<span class="hljs-keyword">new</span> <span class="hljs-title class_">SecurityContext</span>(Lists.newArrayList(securityReference),PathSelectors.any(), method-&gt;<span class="hljs-literal">true</span>, operation-&gt;<span class="hljs-literal">true</span>);<br>        <span class="hljs-comment">//securyContext</span><br>        List&lt;SecurityContext&gt; securityContexts=Lists.newArrayList(securityContext);<br>        <span class="hljs-keyword">return</span> securityContexts;<br>    &#125;<br><br>    <span class="hljs-comment">// SwaggerUiWebMvcConfigurer中也对下面做了一些配置</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addResourceHandlers</span><span class="hljs-params">(ResourceHandlerRegistry registry)</span> &#123;<br>        registry.addResourceHandler(<span class="hljs-string">&quot;/**&quot;</span>).addResourceLocations(<span class="hljs-string">&quot;classpath:/static/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;swagger-ui.html&quot;</span>)<br>                .addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;doc.html&quot;</span>).addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/&quot;</span>);<br>        registry.addResourceHandler(<span class="hljs-string">&quot;/webjars/**&quot;</span>)<br>                .addResourceLocations(<span class="hljs-string">&quot;classpath:/META-INF/resources/webjars/&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/08/22/服务治理/swagger配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>UncleBryan</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/27/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/28/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/Arthas/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"0aLowE3lIVW6eHusyyYIeCQp-gzGzoHsz","appKey":"pfnSBUqV0Q7IFon0bcBvyUZS","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://0alowe3l.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('mermaid' in window) {
+        mermaid.init();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
