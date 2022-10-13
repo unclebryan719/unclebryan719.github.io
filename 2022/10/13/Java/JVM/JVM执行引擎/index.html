@@ -16,24 +16,25 @@
   <meta name="author" content="UncleBryan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="mysql文件配置文件 可以直接查看my.cnf或者运行下面的sql  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263# 查看配置文件全部配置信息SELECT * from &#96;performance_schema">
+    <meta name="description" content="JVM——执行引擎 本地方法接口（JNI） 本地方法：非Java语言编写的方法 为什么要使用本地方法？  Java需要与外面的环境进行交互 有些层次的任务用Java实现起来不容易，或者对效率很在意 与操作系统交互，操作系统用c语言实现 Sun’s Java，Sun的解释器使用c语言实现的  本地方法库：C语言编写的 为什么Java是半解释半编译型语言？ JVM可以自由选择是通过解释器或者JIT编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql文件">
-<meta property="og:url" content="http://example.com/2022/10/12/DB/mysql%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:title" content="JVM——执行引擎">
+<meta property="og:url" content="http://example.com/2022/10/13/Java/JVM/JVM%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/index.html">
 <meta property="og:site_name" content="Life is good">
-<meta property="og:description" content="mysql文件配置文件 可以直接查看my.cnf或者运行下面的sql  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263# 查看配置文件全部配置信息SELECT * from &#96;performance_schema">
+<meta property="og:description" content="JVM——执行引擎 本地方法接口（JNI） 本地方法：非Java语言编写的方法 为什么要使用本地方法？  Java需要与外面的环境进行交互 有些层次的任务用Java实现起来不容易，或者对效率很在意 与操作系统交互，操作系统用c语言实现 Sun’s Java，Sun的解释器使用c语言实现的  本地方法库：C语言编写的 为什么Java是半解释半编译型语言？ JVM可以自由选择是通过解释器或者JIT编译">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h72jfqrza1j31dc0k8430.jpg">
-<meta property="article:published_time" content="2022-10-12T03:48:50.245Z">
-<meta property="article:modified_time" content="2022-10-12T11:22:11.081Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h73m1ykom3j31fg0pw0xp.jpg">
+<meta property="article:published_time" content="2022-10-13T05:46:17.832Z">
+<meta property="article:modified_time" content="2022-10-13T05:52:06.013Z">
 <meta property="article:author" content="UncleBryan">
-<meta property="article:tag" content="Mysql">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h72jfqrza1j31dc0k8430.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h73m1ykom3j31fg0pw0xp.jpg">
   
   
   
-  <title>mysql文件 - Life is good</title>
+  <title>JVM——执行引擎 - Life is good</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="mysql文件"></span>
+            <span id="subtitle" data-typed-text="JVM——执行引擎"></span>
           
         </div>
 
@@ -226,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-12 11:48" pubdate>
-          2022年10月12日 中午
+        <time datetime="2022-10-13 13:46" pubdate>
+          2022年10月13日 下午
         </time>
       </span>
     
@@ -238,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          1.1k 字
         
       </span>
     
@@ -249,7 +250,7 @@
         
         
         
-          21 分钟
+          10 分钟
         
       </span>
     
@@ -295,49 +296,69 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">mysql文件</h1>
+            <h1 style="display: none">JVM——执行引擎</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="mysql文件"><a href="#mysql文件" class="headerlink" title="mysql文件"></a>mysql文件</h1><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><blockquote>
-<p>可以直接查看<code>my.cnf</code>或者运行下面的sql</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 查看配置文件全部配置信息<br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> `performance_schema`.global_variables;<br><br><br><span class="hljs-keyword">show</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_row_lock_%&#x27;</span>;<br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%isolation%&#x27;</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> `performance_schema`.data_locks;<br><br><span class="hljs-comment">-- 排序的单行长度，超过该值就会使用row_id算法排序</span><br><span class="hljs-keyword">show</span> VARIABLES <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;max_length_for_sort_data&#x27;</span><br><br><span class="hljs-comment">-- 缓存池的总大小</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_size&#x27;</span>;<br><br><br><br><span class="hljs-comment">-- 缓存池实例个数</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_instances&#x27;</span>;<br><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_chunk_size&#x27;</span>;<br> <br><br><span class="hljs-comment">-- InnodbLRU算法midpoint的位置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_old_blocks_pct&#x27;</span>;<br><span class="hljs-comment">-- midpoint位置的数据多久放入LRU热点数据位置</span><br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_old_blocks_time&#x27;</span>;<br><br><span class="hljs-comment">-- 查看缓存池的状态</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_POOL_STATS;<br><br><span class="hljs-comment">-- 查询LRU页的使用情况</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_PAGE_LRU;<br><br><span class="hljs-comment">-- 查询LRU页数</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_PAGE_LRU;<br><br><span class="hljs-comment">-- 查询LRU中压缩页使用情况</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_PAGE_LRU <span class="hljs-keyword">where</span> COMPRESSED<span class="hljs-operator">=</span><span class="hljs-string">&#x27;YES&#x27;</span>;<br><br><span class="hljs-comment">-- 查看设置缓存实例的状态</span><br><span class="hljs-keyword">SHOW</span> STATUS <span class="hljs-keyword">WHERE</span> Variable_name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;InnoDB_buffer_pool_resize_status&#x27;</span>;<br><br><span class="hljs-comment">-- LRU列表空闲页个数</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_lru_scan_depth&#x27;</span>;<br><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_max_dirty_pages_pct&#x27;</span>;<br><br><span class="hljs-comment">-- changebuffer大小</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_change_buffer_max_size&#x27;</span>;<br><br><br><br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">GLOBAL</span> STATUS <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_dblwr%&#x27;</span>;<br><br><span class="hljs-comment">-- 查询是否开启自适应哈希</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_adaptive_hash_index&#x27;</span>;<br><br><span class="hljs-comment">-- 是否开启Native AIO</span><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_use_native_aio&#x27;</span>;<br><br><span class="hljs-keyword">show</span> <span class="hljs-keyword">GLOBAL</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;innodb_force_recovery&#x27;</span>;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> `performance_schema`.global_variables <span class="hljs-keyword">where</span> VARIABLE_NAME <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%format%&#x27;</span>;<br></code></pre></td></tr></table></figure>
-
-<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3><ul>
-<li><p>动态（dynamic）参数：可以在MySQL实例运行中进行更改，可以指定生效范围</p>
+                <h1 id="JVM——执行引擎"><a href="#JVM——执行引擎" class="headerlink" title="JVM——执行引擎"></a>JVM——执行引擎</h1><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h73m1ykom3j31fg0pw0xp.jpg" srcset="/img/loading.gif" lazyload alt="Screen Shot 2021-01-20 at 8.50.29 PM"></p>
+<p><strong>本地方法接口（JNI）</strong></p>
+<p>本地方法：非Java语言编写的方法</p>
+<p>为什么要使用本地方法？</p>
 <ul>
-<li>session：当前会话有效</li>
-<li>global：全局有效</li>
+<li>Java需要与外面的环境进行交互</li>
+<li>有些层次的任务用Java实现起来不容易，或者对效率很在意</li>
+<li>与操作系统交互，操作系统用c语言实现</li>
+<li>Sun’s Java，Sun的解释器使用c语言实现的</li>
+</ul>
+<p>本地方法库：C语言编写的</p>
+<p>为什么Java是半解释半编译型语言？</p>
+<p>JVM可以自由选择是通过解释器或者JIT编译器去执行程序。现在JVM在执行Java代码通常会将解释执行与编译执行结合起来进行。</p>
+<p>什么是解释器（Interpreter），什么是JIT编译器？</p>
+<p>解释器：对字节码采用逐行解释的方式执行</p>
+<p>JIT（Just In Time Compiler）编译器：虚拟机将源代码直接编译成和本地机器平台相关的机器语言，将机器指令缓存起来一次性执行。</p>
+<p><strong>JIT编译器效率高，为什么还需要解释器呢？</strong></p>
+<p>他们各有所长，解释器响应速度快，编译器执行效率高。</p>
+<p>当虚拟机启动时，解释器首先发挥作用，而不必等待及时编译器全部编译完成再执行，这样可以省去许多不必要的编译时间。并且随着程序运行时间的推移，及时编译器逐渐发挥作用，根据热点探测功能，将有价值的字节码编译为本地机器指令，以换取更高的程序执行效率。</p>
+<p>同时，解释执行在编译器进行激进优化不成立的时候，作为编译器的“逃生门”。</p>
+<p><strong>Hotspot VM设置执行方式</strong></p>
+<ul>
+<li>-Xint：完全采用解释器执行</li>
+<li>-Xcomp：完全采用JIT编译器执行</li>
+<li>-Xmixed：采用混合模式</li>
+</ul>
+<p>如何选择采用解释器还是JIT编译器？</p>
+<ul>
+<li>JIT编译器</li>
+<li><ul>
+<li>执行频率高的热点代码</li>
+<li>基于计数器的热点探测</li>
+<li><ul>
+<li>方法调用计数器，用于统计方法调用次数，默认阈值：client模式下是1500次，server模式下是10000次，可以通过-XX:CompileThreshold设置</li>
+<li>回边计数器，用于统计循环体执行的循环次数</li>
 </ul>
 </li>
-<li><p>静态（static）参数：在整个实例生命周期内都不得进行更改，只读（read only）</p>
+<li>热度衰减</li>
+<li><ul>
+<li></li>
+</ul>
 </li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 全局</span><br><span class="hljs-keyword">SET</span>@<span class="hljs-variable">@global</span>.binlog_format<span class="hljs-operator">=</span><span class="hljs-type">ROW</span>;<br><span class="hljs-comment">-- 当前会话有效</span><br><span class="hljs-keyword">SET</span>@<span class="hljs-variable">@session</span>.binlog_format<span class="hljs-operator">=</span><span class="hljs-string">&#x27;Statement&#x27;</span>;<br><br><span class="hljs-comment">-- 查询配置</span><br><span class="hljs-keyword">SELECT</span>@<span class="hljs-variable">@session</span>.binlog_format;<br><span class="hljs-keyword">SELECT</span>@<span class="hljs-variable">@global</span>.binlog_format;<br></code></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<p>JIT编译器分为Client Compiler和Server Compiler和Graal</p>
+<ul>
+<li>-client：C1编译器会对字节码进行简单可靠的优化，耗时短。</li>
+<li>-server：C2对字节码优化的更深，耗时长，以及激进化。主要基于逃逸分析（标量替换，栈上分配，同步消除）的基础进行优化。</li>
+<li>自JDK10起，HotSpot加入了Graal模式。</li>
+</ul>
+<p><strong>JDK9引入了AOT编译器（静态编译器，Ahead Of Time Compiler），与JIT是同类</strong></p>
+<ul>
+<li>优点：AOT编译器是在Java代码编译class字节码之后，通过jaotc工具将class文件进行提前编译，大大降低了程序启动时候的时间（.java—&gt;.class—&gt;.so）</li>
+<li>缺点：破坏了Java“一次编译，到处运行”；降低了Java链接过程的动态性</li>
+</ul>
 
-<blockquote>
-<p><font color=red><strong>PS. session级别优先级高于global，当同时存在则session级别生效</strong></font></p>
-</blockquote>
-<blockquote>
-<p>下图操作为切换binlog格式的输出，Statement-&gt;ROW-&gt;Statement</p>
-<p><strong><font color=red>同时证明两种格式的binlog是可以放在同一个文件的</font></strong></p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h72jfqrza1j31dc0k8430.jpg" srcset="/img/loading.gif" lazyload alt="image-20221012153033026"></p>
-<h2 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h2><h3 id="错误日志"><a href="#错误日志" class="headerlink" title="错误日志"></a>错误日志</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看错误日志文件存储路径</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;log_error&#x27;</span>;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 是否开启慢查询</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;slow_query_log&#x27;</span>;<br><br><span class="hljs-comment">-- 慢查询日志位置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;slow_query_log_file&#x27;</span>;<br><br><span class="hljs-comment">-- 慢查询时间 单位 秒</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;long_query_time&#x27;</span>;<br><br><span class="hljs-comment">-- 用来表示每分钟允许记录到slow log的且未使用索引的SQL语句次数</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;log_throttle_queries_not_using_indexes&#x27;</span>;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<p style="color:red;text-align:center;">公司散伙了！！！！待续~</p>
                 
               </div>
             
@@ -355,7 +376,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -370,7 +391,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Mysql/">#Mysql</a>
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/JVM/">#JVM</a>
       
     </div>
   
@@ -382,8 +405,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>mysql文件</div>
-      <div>http://example.com/2022/10/12/DB/mysql文件/</div>
+      <div>JVM——执行引擎</div>
+      <div>http://example.com/2022/10/13/Java/JVM/JVM执行引擎/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +418,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月12日</div>
+          <div>2022年10月13日</div>
         </div>
       
       
@@ -427,9 +450,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Java/JVM/JVM%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/" title="JVM——执行引擎">
+                      <a href="/2022/10/13/Java/JVM/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%AD%90%E7%B3%BB%E7%BB%9F/" title="类加载子系统">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JVM——执行引擎</span>
+                        <span class="hidden-mobile">类加载子系统</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -437,8 +460,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/11/DB/MySQL%20binlog/" title="MySQL binlog与redo log">
-                        <span class="hidden-mobile">MySQL binlog与redo log</span>
+                      <a href="/2022/10/12/DB/mysql%E6%96%87%E4%BB%B6/" title="mysql文件">
+                        <span class="hidden-mobile">mysql文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
