@@ -16,18 +16,18 @@
   <meta name="author" content="UncleBryan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JVM jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。   多语言混合编程 JVM正在从Java语言的虚拟机向多语言虚拟机的方向发展，不同语言解决自己擅长的领域，最后全部使用JVM解释执行。 JVM种类  HotSpot  JRockit  IBM的J9  Graal VM  未来有可能会替代HotSpot虚拟机      前端编译器 JIT后端">
+    <meta name="description" content="JVM多语言混合编程 jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。 JVM正在从Java语言的虚拟机向多语言虚拟机的方向发展，不同语言解决自己擅长的领域，最后全部使用JVM解释执行。   JVM种类 HotSpot  JRockit  IBM的J9  Graal VM  未来有可能会替代HotSpot虚拟机      前端编译器 JIT后端编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM总结">
 <meta property="og:url" content="http://example.com/2022/05/16/Java/JVM/JVM/index.html">
 <meta property="og:site_name" content="Life is good">
-<meta property="og:description" content="JVM jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。   多语言混合编程 JVM正在从Java语言的虚拟机向多语言虚拟机的方向发展，不同语言解决自己擅长的领域，最后全部使用JVM解释执行。 JVM种类  HotSpot  JRockit  IBM的J9  Graal VM  未来有可能会替代HotSpot虚拟机      前端编译器 JIT后端">
+<meta property="og:description" content="JVM多语言混合编程 jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。 JVM正在从Java语言的虚拟机向多语言虚拟机的方向发展，不同语言解决自己擅长的领域，最后全部使用JVM解释执行。   JVM种类 HotSpot  JRockit  IBM的J9  Graal VM  未来有可能会替代HotSpot虚拟机      前端编译器 JIT后端编译">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h73lwisbvij30t90evabc.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h73lwuqq1yj30rf0iin1j.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h73lxb4r87j30lq0fk3zo.jpg">
 <meta property="article:published_time" content="2022-05-16T15:44:30.411Z">
-<meta property="article:modified_time" content="2022-10-13T05:42:29.891Z">
+<meta property="article:modified_time" content="2022-10-13T09:21:40.167Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JVM">
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.1k 字
+          5.2k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          43 分钟
+          44 分钟
         
       </span>
     
@@ -303,14 +303,12 @@
             
               <div class="markdown-body">
                 
-                <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><ol>
-<li>jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h73lwisbvij30t90evabc.jpg" srcset="/img/loading.gif" lazyload alt="image-20210926133526129"></p>
-<p>多语言混合编程</p>
+                <h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="多语言混合编程"><a href="#多语言混合编程" class="headerlink" title="多语言混合编程"></a>多语言混合编程</h4><blockquote>
+<p>jvm不仅仅能解释运行java程序，只要是编译后的字节码文件遵循jvm规范的语言都能被jvm执行。</p>
 <p>JVM正在从<strong>Java语言的虚拟机</strong>向<strong>多语言虚拟机</strong>的方向发展，不同语言解决自己擅长的领域，最后全部使用JVM解释执行。</p>
-<p>JVM种类</p>
-<ul>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h73lwisbvij30t90evabc.jpg" srcset="/img/loading.gif" lazyload alt="image-20210926133526129"></p>
+<h4 id="JVM种类"><a href="#JVM种类" class="headerlink" title="JVM种类"></a>JVM种类</h4><ul>
 <li><p>HotSpot</p>
 </li>
 <li><p>JRockit</p>
@@ -408,8 +406,8 @@
 <li>验证 Verify：验证class文件的合法性</li>
 <li>准备 Prepare<ul>
 <li>为类变量初始化零值（int就是0，boolean就是FALSE…）</li>
-<li>final修饰的static的常量在编译的时候就会隐式初始化了，在准备阶段会显示初始化为具体的值</li>
-<li>这里<font color=red>不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量会随着对象一起分配到Java堆中</font></li>
+<li>final修饰类变量在编译的时候就会隐式初始化了，在准备阶段会显示初始化为具体的值</li>
+<li>这里<font color=red>不会为实例变量分配初始化，类变量会分配在方法区中，而实例变量会随着对象一起分配到Java堆中；<strong>1.7以后都放入到堆中了</strong></font></li>
 </ul>
 </li>
 <li>解析 Resolve<ul>
@@ -430,6 +428,14 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>总结：</p>
+<p>编译期：隐式初始化final修饰类变量</p>
+<p>链接阶段：</p>
+<ul>
+<li>准备：</li>
+</ul>
+</blockquote>
 <h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><pre><code class=" mermaid">graph BT
 自定义类加载器1[User Defined Class Loader1] --&gt; 系统类加载器
 自定义类加载器2[User Defined Class Loader2] --&gt; 系统类加载器
