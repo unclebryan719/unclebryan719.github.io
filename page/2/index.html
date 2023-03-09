@@ -242,15 +242,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/12/DB/mysql%E6%96%87%E4%BB%B6/" target="_self">
-          mysql文件
+        <a href="/2023/03/09/Synology/%E7%BE%A4%E6%99%96%E4%BD%BF%E7%94%A8/" target="_self">
+          群晖使用、frp内网穿透等
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/12/DB/mysql%E6%96%87%E4%BB%B6/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/Synology/%E7%BE%A4%E6%99%96%E4%BD%BF%E7%94%A8/" target="_self">
         <div>
-          mysql文件配置文件 可以直接查看my.cnf或者运行下面的sql  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263# 查看配置文件全部配置信息SELECT * from `performance_schema
+          安装 浏览器输入：http://192.168.1.15:5000/web_index.html       基础设置      设置磁盘格式  SHR会做备份，比如有两块4T硬盘，使用该格式，整体可用空间为4T Basic是硬盘实际总和，不会做备份        安装套件系统设置开启AFP服务，用于mac连接  开启SSH  群晖使用客户端连接群晖DSM 支持最常用的协议，可从 Windows、
         </div>
       </a>
 
@@ -258,8 +258,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-12 11:48" pubdate>
-              2022-10-12
+            <time datetime="2023-03-09 20:42" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -274,7 +274,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  <a href="/categories/Synology/" class="category-chain-item">Synology</a>
   
   
 
@@ -289,7 +289,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Mysql/">#Mysql</a>
+              <a href="/tags/Synology/">#Synology</a>
             
           </div>
         
@@ -303,74 +303,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/11/DB/MySQL%20binlog/" target="_self">
-          MySQL binlog与redo log
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/11/DB/MySQL%20binlog/" target="_self">
-        <div>
-          MySQL binlog与redo logbinlog binlog存储的是逻辑日志，即每次执行的SQL语句 binlog（归档日志）属于Server层也有自己的日志 Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理 可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态  12345678-- 查看binlog格式show GLOB
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-11 13:52" pubdate>
-              2022-10-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/DB/" class="category-chain-item">DB</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Mysql/">#Mysql</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/10/DB/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+        <a href="/2023/03/09/DB/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
           InnoDB存储引擎浅析
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/10/DB/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/DB/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" target="_self">
         <div>
           InnoDB存储引擎 后台线程 Master Thread  Master Thread是一个非常核心的后台线程，主要负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性，包括脏页的刷新、合并插入缓冲（INSERT BUFFER）、UNDO页的回收等。 我的理解是身兼数职。   IO Thread  在InnoDB存储引擎中大量使用了AIO（Async IO）来处理写IO请求，这样可以极大提高数据
         </div>
@@ -380,8 +319,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-10 14:06" pubdate>
-              2022-10-10
+            <time datetime="2023-03-09 20:41" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -427,15 +366,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/09/DB/MySQL%E7%9A%84Join%E7%AE%97%E6%B3%95/" target="_self">
-          MySQL的Join算法
+        <a href="/2023/03/09/%E5%B7%A5%E5%85%B7/markdown%E5%9B%BE%E7%89%87%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB/" target="_self">
+          
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/09/DB/MySQL%E7%9A%84Join%E7%AE%97%E6%B3%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E5%B7%A5%E5%85%B7/markdown%E5%9B%BE%E7%89%87%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB/" target="_self">
         <div>
-          MySQL的Join算法Index Nested-Loop Join1select * from t1 straight_join t2 on (t1.a=t2.a);   图1 使用索引字段join的 explain结果 可以看到，在这条语句里，被驱动表t2的字段a上有索引，join过程用上了这个索引，因此这个语句的执行流程是这样的：  从表t1中读入一行数据 R； 从数据行R中，取出a字段到表
+          markdown图片图床迁移 由于新浪图床失效，需要将markdown图片迁移到其他图床   临时解决新浪图床失效 在https后加入cdn路径cdn.cdnjson.com/ 失效地址：https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg 修复后地址：https://cdn.cdnjson.com/tva1.sina
         </div>
       </a>
 
@@ -443,8 +382,41 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-09 19:47" pubdate>
-              2022-10-09
+            <time datetime="2023-03-09 18:36" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/Java/CleanCode/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" target="_self">
+          函数式编程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/Java/CleanCode/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" target="_self">
+        <div>
+          函数式编程Lambda表达式格式：只关注方法参数与方法体 1(参数列表) -&gt; &#123;代码&#125;  省略规则：   参数类型可以省略 方法体只有一句代码，大括号return和唯一一句代码的分号可以省略 方法只有一个参数时，小括号可以省略   创建流单列集合：集合对象.stream() 数组：Arrays.stream(数组)或者使用Stream.of() 双列集合：转换成单列集合
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 18:36" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -459,7 +431,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -474,7 +446,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Mysql/">#Mysql</a>
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/Java8/">#Java8</a>
             
           </div>
         
@@ -488,15 +462,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/09/DB/Mysql%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
-          Mysql排序算法
+        <a href="/2023/03/09/Java/CleanCode/Java%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/" target="_self">
+          Java开发工具类
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/09/DB/Mysql%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/Java/CleanCode/Java%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB/" target="_self">
         <div>
-          Mysql排序算法 参考MySQL45讲  准备工作假设这个表的部分定义是这样的： 123456789CREATE TABLE `t` (  `id` int(11) NOT NULL,  `city` varchar(16) NOT NULL,  `name` varchar(16) NOT NULL,  `age` int(11) NOT NULL,  `addr` varchar(128)
+          Java开发工具类对象与Map转换 对象转Map&lt;String, String&gt;  123456789101112Student student = new Student();try &#123;  Map&lt;String, String&gt; map = org.apache.commons.beanutils.BeanUtils.describe(student);&#12
         </div>
       </a>
 
@@ -504,8 +478,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-09 18:19" pubdate>
-              2022-10-09
+            <time datetime="2023-03-09 18:36" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -520,7 +494,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DB/" class="category-chain-item">DB</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -535,7 +509,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Mysql/">#Mysql</a>
+              <a href="/tags/Java/">#Java</a>
+            
+              <a href="/tags/Tools/">#Tools</a>
             
           </div>
         
@@ -549,263 +525,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/08/Synology/%E7%99%BE%E5%BA%A6%E4%BA%91%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E5%88%B0%E7%BE%A4%E6%99%96/" target="_self">
-          百度云数据同步到群晖
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/08/Synology/%E7%99%BE%E5%BA%A6%E4%BA%91%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E5%88%B0%E7%BE%A4%E6%99%96/" target="_self">
-        <div>
-          百度云数据同步到群晖 在群晖套件中打开Cloud Sync，没有安装请自行安装    授权百度云权限并设置同步信息    本地路径：要同步到群晖系统的路径 远程路径：根文件夹指的是百度云-我的应用数据-Cloud Sync，默认会创建该文件夹    将要同步的文件移动到Cloud Sync文件夹，即可自动向群晖同步数据。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-08 23:27" pubdate>
-              2022-10-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Synology/" class="category-chain-item">Synology</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Synology/">#Synology</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/06/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_self">
-          Hexo搭建博客
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/06/Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_self">
-        <div>
-          Hexo搭建博客官网 https://hexo.io/zh-cn/docs/  安装 安装基础环境  Node.js和git   安装Hexo 1npm install -g hexo-cli  建站 1hexo init blog  目录结构如下   初始化博客内容 1234# 进入目录cd blog# npm install  开启服务 123456# 生成html等静态资源文件hexo ge
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-06 11:02" pubdate>
-              2022-10-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/tech/" class="category-chain-item">tech</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">#hexo</a>
-            
-              <a href="/tags/blog/">#blog</a>
-            
-              <a href="/tags/tech/">#tech</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/29/ElasticSearch/ElasticSearch/" target="_self">
-          ElasticSearch
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/29/ElasticSearch/ElasticSearch/" target="_self">
-        <div>
-          ElasticSearch官方文档 https://www.elastic.co/guide/en/elasticsearch/reference/index.html  安装ES123docker network create elasticdocker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.6docker run --n
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-29 14:17" pubdate>
-              2022-09-29
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/es/" class="category-chain-item">es</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/tech/">#tech</a>
-            
-              <a href="/tags/es/">#es</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/25/Synology/%E7%BE%A4%E6%99%96%E4%BD%BF%E7%94%A8/" target="_self">
-          群晖使用、frp内网穿透等
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/25/Synology/%E7%BE%A4%E6%99%96%E4%BD%BF%E7%94%A8/" target="_self">
-        <div>
-          安装 浏览器输入：http://192.168.1.15:5000/web_index.html  ![image-20220929220133453](..&#x2F;..&#x2F;..&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220929220133453.png)    ![ima
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-25 20:55" pubdate>
-              2022-09-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Synology/" class="category-chain-item">Synology</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Synology/">#Synology</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/09/14/CloudNative/Docker/Docker%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" target="_self">
+        <a href="/2023/03/09/CloudNative/Docker/Docker%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" target="_self">
           Docker安装软件
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/14/CloudNative/Docker/Docker%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/CloudNative/Docker/Docker%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" target="_self">
         <div>
           安装Rocketmq官方文档  https://github.com/apache/rocketmq-docker   克隆镜像仓库  1git clone https://github.com/apache/rocketmq-docker.git   构建docker镜像  1234cd image-buildsh build-image.sh RMQ-VERSION BASE-IMAGE# 例
         </div>
@@ -815,8 +541,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-14 16:50" pubdate>
-              2022-09-14
+            <time datetime="2023-03-09 18:36" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -847,6 +573,231 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Docker/">#Docker</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E8%BF%90%E7%BB%B4/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BA%92%E8%81%94/" target="_self">
+          多台电脑的虚拟机互联
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E8%BF%90%E7%BB%B4/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BA%92%E8%81%94/" target="_self">
+        <div>
+          多台电脑的虚拟机互联 虚拟机网络连接方式设置为桥接 查看宿主机网络信息    配置虚拟机网络  1vim /etc/sysconfig/network-scripts/ifcfg-ens33    重启虚拟机网络  1service network restart
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 18:35" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Network/">#Network</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E8%BF%90%E7%BB%B4/Terminal%20%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/" target="_self">
+          Terminal快速打开文件
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E8%BF%90%E7%BB%B4/Terminal%20%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6/" target="_self">
+        <div>
+          Terminal 快速打开文件typora配置 1234567# 这种方式是通用的# 在zshrc中加入下面配置，并通过source使其生效alias ty=&quot;open -a typora&quot;# 使用在terminal中输入‘ty 文件名’，即可打开并编辑指定文件在terminal中输入‘ty .’，即可打开整个文件夹并新建一个新的文件  VSCode配置  打开 VSCode
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 18:35" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Mac/">#Mac</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E6%A1%86%E6%9E%B6/SpringSecurity/" target="_self">
+          Spring源码总结
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E6%A1%86%E6%9E%B6/SpringSecurity/" target="_self">
+        <div>
+          SpringSecurity WebSecurityConfigurerAdapter JWTOauth2.0主要解决第三方登录问题，并获取用户资源 SpringSecurityOauth2  认证流程
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 18:35" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringSecurity/">#SpringSecurity</a>
+            
+              <a href="/tags/source/">#source</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E6%A1%86%E6%9E%B6/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" target="_self">
+          SpringBoot自动装配
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E6%A1%86%E6%9E%B6/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" target="_self">
+        <div>
+          自动装配流程flowchart LR SpringBootApplication --&gt; EnableAutoConfiguration --&gt; AutoConfigurationImportSelector --&gt; selectImports   123456789public String[] selectImports(AnnotationMetadata annotati
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 18:35" pubdate>
+              2023-03-09
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringBoot/">#SpringBoot</a>
             
           </div>
         
