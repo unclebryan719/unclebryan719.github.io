@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="Life is good">
 <meta property="og:description" content="Spring源码总结IOCBean生命周期graph LR Bean创建--&gt;初始化--&gt;销毁   Bean的创建 单实例Bean：容器启动时创建 多实例Bean：第一次获取时创建  Bean初始化属性赋值12&#x2F;&#x2F; 给属性赋值populateBean(beanName, mbd, instanceWrapper);  初始化之前​	调用BeanPostProcessor的postPro">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0wu37fs2qj227a0tgaex.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0wu37fs2qj227a0tgaex.jpg">
 <meta property="article:published_time" content="2022-05-16T15:44:30.412Z">
-<meta property="article:modified_time" content="2022-10-19T02:42:59.035Z">
+<meta property="article:modified_time" content="2023-03-09T10:16:29.628Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="source">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg">
+<meta name="twitter:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg">
   
   
   
@@ -354,7 +354,7 @@ PreDestroy注解--&gt;DisposableBean--&gt;Bean注解的destroy方法
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Nullable</span><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> BeanDefinition <span class="hljs-title function_">registerOrEscalateApcAsRequired</span><span class="hljs-params">(</span><br><span class="hljs-params">			Class&lt;?&gt; cls, BeanDefinitionRegistry registry, <span class="hljs-meta">@Nullable</span> Object source)</span> &#123;<br>		......<br>		<span class="hljs-type">RootBeanDefinition</span> <span class="hljs-variable">beanDefinition</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RootBeanDefinition</span>(cls);<br>		beanDefinition.setSource(source);<br>		beanDefinition.getPropertyValues().add(<span class="hljs-string">&quot;order&quot;</span>, Ordered.HIGHEST_PRECEDENCE);<br>		beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);<br>		registry.registerBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME, beanDefinition);<br>		<span class="hljs-keyword">return</span> beanDefinition;<br>	&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg" srcset="/img/loading.gif" lazyload alt="image-20220403205011466"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0wtp4nnzwj21la0bmmz8.jpg" srcset="/img/loading.gif" lazyload alt="image-20220403205011466"></p>
 <h4 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h4><blockquote>
 <p><code>AnnotationAwareAspectJAutoProxyCreator</code></p>
 </blockquote>
@@ -363,7 +363,7 @@ PreDestroy注解--&gt;DisposableBean--&gt;Bean注解的destroy方法
 <li>实现了<code>BeanPostProcessor</code>接口</li>
 <li>实现了<code>BeanFActionyAware</code>接口</li>
 </ul>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0wu37fs2qj227a0tgaex.jpg" srcset="/img/loading.gif" lazyload alt="AnnotationAwareAspectJAutoProxyCreator"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0wu37fs2qj227a0tgaex.jpg" srcset="/img/loading.gif" lazyload alt="AnnotationAwareAspectJAutoProxyCreator"></p>
 <p>BeanPostProcessor创建流程</p>
 <pre><code class=" mermaid">sequenceDiagram
     autonumber

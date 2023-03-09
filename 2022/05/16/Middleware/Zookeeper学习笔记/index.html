@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Life is good">
 <meta property="og:description" content="Zookeeper学习笔记 12345678910111213141516171819202122232425262728293031323334353637383940414243# The number of milliseconds of each tick# 每次的心跳时间，指的是客户端与服务端或者服务端与服务端，如果超过2秒钟，说明连接断开tickTime&#x3D;2000# The numbe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6450qfkj21dv0u0gno.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z65zhsnej220r0u00vn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6aqsdj8j21nw0u0gqe.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6gm3tw6j21sr0u0dka.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6450qfkj21dv0u0gno.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z65zhsnej220r0u00vn.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6aqsdj8j21nw0u0gqe.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6gm3tw6j21sr0u0dka.jpg">
 <meta property="article:published_time" content="2022-05-16T15:44:30.462Z">
-<meta property="article:modified_time" content="2022-10-12T15:39:01.410Z">
+<meta property="article:modified_time" content="2023-03-09T10:16:40.992Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Middleware">
 <meta property="article:tag" content="Zookeeper">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg">
+<meta name="twitter:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg">
   
   
   
@@ -305,7 +305,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="Zookeeper学习笔记"><a href="#Zookeeper学习笔记" class="headerlink" title="Zookeeper学习笔记"></a>Zookeeper学习笔记</h3><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg" srcset="/img/loading.gif" lazyload alt="image-20220404211140955"></p>
+                <h3 id="Zookeeper学习笔记"><a href="#Zookeeper学习笔记" class="headerlink" title="Zookeeper学习笔记"></a>Zookeeper学习笔记</h3><p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0xzy2xkchj21f70u0ag8.jpg" srcset="/img/loading.gif" lazyload alt="image-20220404211140955"></p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># The number of milliseconds of each tick</span><br><span class="hljs-comment"># 每次的心跳时间，指的是客户端与服务端或者服务端与服务端，如果超过2秒钟，说明连接断开</span><br><span class="hljs-attr">tickTime</span>=<span class="hljs-string">2000</span><br><span class="hljs-comment"># The number of ticks that the initial </span><br><span class="hljs-comment"># synchronization phase can take</span><br><span class="hljs-comment"># 初始化时的心跳个数，指的是第一次Leader与Follower建立连接时的通信心跳个数，即20秒，如果超过20秒则表示建立连接失败</span><br><span class="hljs-attr">initLimit</span>=<span class="hljs-string">10</span><br><span class="hljs-comment"># The number of ticks that can pass between </span><br><span class="hljs-comment"># sending a request and getting an acknowledgement</span><br><span class="hljs-comment"># 指的是非第一次通信时，Leader与Follower建立连接时的通信心跳个数</span><br><span class="hljs-attr">syncLimit</span>=<span class="hljs-string">5</span><br><span class="hljs-comment"># the directory where the snapshot is stored.</span><br><span class="hljs-comment"># do not use /tmp for storage, /tmp here is just </span><br><span class="hljs-comment"># example sakes.</span><br><span class="hljs-comment"># zookeeper数据目录，不能存在tmp目录，Linux会定期回收tmp里的文件</span><br><span class="hljs-attr">dataDir</span>=<span class="hljs-string">/Users/unclebryan/DevTools/apache-zookeeper-3.7.0-bin/data</span><br><span class="hljs-comment"># 日志文件</span><br><span class="hljs-attr">dataLogDir</span>=<span class="hljs-string">/Users/unclebryan/DevTools/apache-zookeeper-3.7.0-bin/logs</span><br><span class="hljs-comment"># the port at which the clients will connect</span><br><span class="hljs-comment"># 客户端与服务端通信端口</span><br><span class="hljs-attr">clientPort</span>=<span class="hljs-string">2181</span><br><span class="hljs-comment"># the maximum number of client connections.</span><br><span class="hljs-comment"># increase this if you need to handle more clients</span><br><span class="hljs-comment">#maxClientCnxns=60</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Be sure to read the maintenance section of the </span><br><span class="hljs-comment"># administrator guide before turning on autopurge.</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># The number of snapshots to retain in dataDir</span><br><span class="hljs-comment">#autopurge.snapRetainCount=3</span><br><span class="hljs-comment"># Purge task interval in hours</span><br><span class="hljs-comment"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="hljs-comment">#autopurge.purgeInterval=1</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">## Metrics Providers</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># https://prometheus.io Metrics Exporter</span><br><span class="hljs-comment">#metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider</span><br><span class="hljs-comment">#metricsProvider.httpPort=7000</span><br><span class="hljs-comment">#metricsProvider.exportJvmInfo=true</span><br><br></code></pre></td></tr></table></figure>
 
 
@@ -413,18 +413,18 @@
 <h4 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h4><ul>
 <li>客户端连接的是Leader节点</li>
 </ul>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6450qfkj21dv0u0gno.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213054290"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6450qfkj21dv0u0gno.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213054290"></p>
 <ul>
 <li><p>客户端连接的是Follower节点</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z65zhsnej220r0u00vn.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213243774"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z65zhsnej220r0u00vn.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213243774"></p>
 </li>
 </ul>
 <h4 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h4><ul>
 <li><p>服务的动态上下线</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6aqsdj8j21nw0u0gqe.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213715307"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6aqsdj8j21nw0u0gqe.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405213715307"></p>
 </li>
 <li><p>分布式锁</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0z6gm3tw6j21sr0u0dka.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405214256648"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/e6c9d24ely1h0z6gm3tw6j21sr0u0dka.jpg" srcset="/img/loading.gif" lazyload alt="image-20220405214256648"></p>
 </li>
 </ul>
 <blockquote>

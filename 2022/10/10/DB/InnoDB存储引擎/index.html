@@ -23,21 +23,21 @@
 <meta property="og:site_name" content="Life is good">
 <meta property="og:description" content="InnoDB存储引擎 后台线程 Master Thread  Master Thread是一个非常核心的后台线程，主要负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性，包括脏页的刷新、合并插入缓冲（INSERT BUFFER）、UNDO页的回收等。 我的理解是身兼数职。   IO Thread  在InnoDB存储引擎中大量使用了AIO（Async IO）来处理写IO请求，这样可以极大提高数据">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h706tg38m6j30xs0g43zt.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70na4pfvhj32660omaes.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70nb5qisgj31p60r4q5i.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h706tg38m6j30xs0g43zt.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70na4pfvhj32660omaes.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70nb5qisgj31p60r4q5i.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg">
+<meta property="og:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg">
 <meta property="article:published_time" content="2022-10-10T06:06:03.583Z">
-<meta property="article:modified_time" content="2022-10-12T03:47:34.669Z">
+<meta property="article:modified_time" content="2023-03-09T10:16:50.978Z">
 <meta property="article:author" content="UncleBryan">
 <meta property="article:tag" content="Mysql">
 <meta property="article:tag" content="Innodb">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg">
+<meta name="twitter:image" content="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg">
   
   
   
@@ -308,7 +308,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="InnoDB存储引擎"><a href="#InnoDB存储引擎" class="headerlink" title="InnoDB存储引擎"></a>InnoDB存储引擎</h1><p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010141141713"></p>
+                <h1 id="InnoDB存储引擎"><a href="#InnoDB存储引擎" class="headerlink" title="InnoDB存储引擎"></a>InnoDB存储引擎</h1><p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h705x2148xj30y60mi0u4.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010141141713"></p>
 <h2 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h2><ol>
 <li><p>Master Thread</p>
 <blockquote>
@@ -332,7 +332,7 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><h3 id="内存结构图"><a href="#内存结构图" class="headerlink" title="内存结构图"></a>内存结构图</h3><p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h706tg38m6j30xs0g43zt.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010144248273"></p>
+<h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><h3 id="内存结构图"><a href="#内存结构图" class="headerlink" title="内存结构图"></a>内存结构图</h3><p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h706tg38m6j30xs0g43zt.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010144248273"></p>
 <h3 id="缓冲池"><a href="#缓冲池" class="headerlink" title="缓冲池"></a>缓冲池</h3><blockquote>
 <p>缓冲池 innodb_buffer_pool</p>
 <p>缓冲池中缓存的数据页类型有：索引页、数据页、undo页、插入缓冲（insert buffer）、自适应哈希索引（adaptive hash index）、InnoDB存储的锁信息（lock info）、数据字典信息（data dictionary）等。不能简单地认为，缓冲池只是缓存索引页和数据页，它们只是占缓冲池很大的一部分而已。</p>
@@ -340,10 +340,10 @@
 </blockquote>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 缓冲池的总大小 </span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_size&#x27;</span>;<br><span class="hljs-comment">-- 缓冲池的总大小 单位是byte   -- 134217728/1024/1024=128M</span><br><span class="hljs-comment">-- 缓冲池实例个数</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_buffer_pool_instances&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010163151463"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h709yuui6vj30io05m3yj.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010163151463"></p>
 <h4 id="缓冲池状态信息"><a href="#缓冲池状态信息" class="headerlink" title="缓冲池状态信息"></a>缓冲池状态信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 查看缓冲池的状态</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_POOL_STATS;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010165055392"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70aiovvrmj321y07eq3x.jpg" srcset="/img/loading.gif" lazyload alt="image-20221010165055392"></p>
 <ul>
 <li>POOL_SIZE：表示当前缓冲池的页数为8191，8191*16kb&#x2F;1024≈128M</li>
 <li>FREE_BUFFERS：Free List空闲列表剩余页数</li>
@@ -377,16 +377,16 @@
 <p>可以通过调整下列参数，尽可能地保护热点数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- InnodbLRU算法midpoint的位置</span><br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_old_blocks_pct&#x27;</span>;<br><span class="hljs-comment">-- midpoint位置的数据多久放入LRU热点数据位置  单位：毫秒</span><br><span class="hljs-keyword">show</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;innodb_old_blocks_time&#x27;</span>;<br><br><span class="hljs-comment">-- 查询LRU页的使用情况</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_PAGE_LRU;<br><br><span class="hljs-comment">-- 查询LRU页数</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> information_schema.INNODB_BUFFER_PAGE_LRU;<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70na4pfvhj32660omaes.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011001228695"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70na4pfvhj32660omaes.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011001228695"></p>
 <h5 id="Free-List"><a href="#Free-List" class="headerlink" title="Free List"></a>Free List</h5><blockquote>
 <p>Free List中存放的都是未曾使用的空闲Page，InnoDB需要Page时从Free List中获取，如果Free List为空，即没有任何空闲Page，则会从LRU List和Flush List中通过淘汰旧Page和Flush脏Page来回收Page。在InnoDB初始化时，会将Buffer chunks中的所有Page加入到Free List中。</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70nb5qisgj31p60r4q5i.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011001325067"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70nb5qisgj31p60r4q5i.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011001325067"></p>
 <h5 id="Flush-List"><a href="#Flush-List" class="headerlink" title="Flush List"></a>Flush List</h5><blockquote>
 <p>所有被修改过且还没来得及被flush到磁盘上的Page（脏页），都会被保存在这个链表中。所有保存在Flush List上的数据都会在LRU List中，但在LRU List中的数据不一定都在Flush List中。在Flush List上的每个Page都会保存其最早修改的lsn，即oldest_modification，虽然一个Page可能被修改多次，但只记录最早的修改。Flush List上的Page会按照其各自的oldest_modification进行降序排序，链表尾部保存oldest_modification最小的Page，在需要从Flush List中回收Page时，从尾部开始回收。</p>
 <p> Innodb存储引擎会将脏页的控制块放入一个flush list的链表中，<font color=red>注意，这里链表中不是真实的缓存数据页，而是数据页对应的控制块。</font></p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg" srcset="/img/loading.gif" lazyload alt="bh1ocl8tjo"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h70nfxxke5j30iw092wfi.jpg" srcset="/img/loading.gif" lazyload alt="bh1ocl8tjo"></p>
 <h4 id="Insert-Buffer"><a href="#Insert-Buffer" class="headerlink" title="Insert Buffer"></a>Insert Buffer</h4><blockquote>
 <p>当进行插入操作时，表中只有一个自增主键（<font color=red><strong>插入时不能指定主键值，指定值就不是顺序插入了</strong></font>），没有其他二级索引，此时，只需要顺序插入主键索引树，不会出现随机访问多个页的情况，速度很快</p>
 <p>但，实际情况下，一个表中很可能还有其他二级索引，插入非聚簇索引一定会涉及随机访问多个页，同时插入也不是顺序的</p>
@@ -403,7 +403,7 @@
 <p>如果操作系统在将页写入磁盘的过程中发生了崩溃，在恢复过程中，InnoDB存储引擎可以从共享表空间中的doublewrite中找到该页的一个副本，将其复制到表空间文件，再应用重做日志。</p>
 <p>在对缓冲池的脏页进行刷新时，并不直接写磁盘，而是会通过memcpy函数将脏页先复制到内存中的doublewrite buffer，之后通过doublewrite buffer再分两次，每次1MB顺序地写入共享表空间的物理磁盘上，然后马上调用fsync函数，同步磁盘，避免缓冲写带来的问题。</p>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011221835132"></p>
+<p><img src="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/008vxvgGly1h71plzxehmj31430u0783.jpg" srcset="/img/loading.gif" lazyload alt="image-20221011221835132"></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 双写<br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">GLOBAL</span> STATUS <span class="hljs-keyword">LIKE</span><span class="hljs-string">&#x27;innodb_dblwr%&#x27;</span>;<br>innodb_dblwr_pages_written 写入的页数<br>innodb_dblwr_writes 写入次数<br></code></pre></td></tr></table></figure>
 
 <h4 id="自适应哈希"><a href="#自适应哈希" class="headerlink" title="自适应哈希"></a>自适应哈希</h4><blockquote>
