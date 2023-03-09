@@ -242,15 +242,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/18/interview/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/" target="_self">
-          多线程总结
+        <a href="/2023/03/09/DB/MySQL%20binlog/" target="_self">
+          MySQL binlog与redo log
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/18/interview/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/DB/MySQL%20binlog/" target="_self">
         <div>
-          多线程面试题总结Java并发volatile 关键字 保证可见性 volatile 关键字可以保证变量的可见性，如果我们将变量声明为 volatile ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。  禁指令重排序 如果我们将变量声明为 volatile ，在对这个变量进行读写操作的时候，会通过插入特定的 内存屏障 的方式来禁止指令重排序。此外，如下方法也可以实现内存
+          MySQL binlog与redo logbinlog binlog存储的是逻辑日志，即每次执行的SQL语句 binlog（归档日志）属于Server层也有自己的日志 Binlog的作用是做数据复制，主从同步，或者通过Canal读取binlog的变更日志进行业务处理 可以通过整库全量备份+binlog重放，将数据恢复到任意时间点的状态  12345678-- 查看binlog格式show GLOB
         </div>
       </a>
 
@@ -258,8 +258,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-18 09:04" pubdate>
-              2022-10-18
+            <time datetime="2023-03-09 18:32" pubdate>
+              2023-03-09
             </time>
           </div>
         
@@ -274,7 +274,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Interview/" class="category-chain-item">Interview</a>
+  <a href="/categories/DB/" class="category-chain-item">DB</a>
   
   
 
@@ -289,9 +289,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Interview/">#Interview</a>
-            
-              <a href="/tags/MultiThread/">#MultiThread</a>
+              <a href="/tags/Mysql/">#Mysql</a>
             
           </div>
         
@@ -305,15 +303,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/13/Java/JVM/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" target="_self">
-          JVM-垃圾回收GC
+        <a href="/2023/03/09/DDD/DDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" target="_self">
+          DDD领域驱动设计
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/13/Java/JVM/JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/DDD/DDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/" target="_self">
         <div>
-          JVM-垃圾回收GC什么是垃圾？ 垃圾是指在运行程序中没有任何指针指向的对象，这个对象就是需要被回收的垃圾。 为什么需要GC？  如果没有GC，内存迟早会被消耗完 除了释放没用的对象，垃圾回收也可以清除内存里的记录碎片。碎片整理将所占用的堆内存移到堆的一端，以便jvm将整理出的内存分配给新的对象。 随着程序业务越来越庞大，复杂，没有GC就不能保证应用程序的正常运行  早期的垃圾回收：手动申请和释放
+          DDD领域驱动设计数据驱动设计流程 需求分析 数据建模（ER图） 建库建表（写DAO) 编写业务逻辑  弊端：很难重用、 领域驱动设计流程 需求分析，有规范，使用统一语言    领域分析——领域边界划分，边界的划分标准是业务     为了保证领域的内聚性更强，会对领域采取保护手段，包括ACL、OHS、PL ACL：接口层面的定义，通过适配器、桥接模式等， OHS、PL：应用层 领域建模  领域对象
         </div>
       </a>
 
@@ -321,40 +319,17 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-13 14:27" pubdate>
-              2022-10-13
+            <time datetime="2023-03-09 18:32" pubdate>
+              2023-03-09
             </time>
           </div>
         
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">#Java</a>
-            
-              <a href="/tags/JVM/">#JVM</a>
+              <a href="/tags/DDD/">#DDD</a>
             
           </div>
         
@@ -368,15 +343,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/13/Java/JVM/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/" target="_self">
-          JVM运行时数据区
+        <a href="/2023/03/09/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/%E7%BE%A4%E6%99%96%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" target="_self">
+          
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/13/Java/JVM/JVM%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/%E7%BE%A4%E6%99%96%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/" target="_self">
         <div>
-          JVM运行时数据区 Java虚拟机栈每个线程在创建的过程中都会创建一个虚拟机栈，其内部保存着一个一个的栈帧（Stack Frame），每个栈帧对应着一个方法，线程私有的，生命周期与线程一致。 栈是一种快速有效的分配存储地址，访问速度仅次于程序计数器。只有入栈和出栈操作。 主管程序运行，它保存方法的局部变量（8种基本数据类型和对象的引用地址）和部分结果，并参与方法的调用与返回。  局部变量 VS 成
+          安装MySQL套件
         </div>
       </a>
 
@@ -384,42 +359,78 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-13 13:54" pubdate>
-              2022-10-13
+            <time datetime="2023-03-09 15:26" pubdate>
+              2023-03-09
             </time>
           </div>
         
         
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
         
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
-  
-  
+      </div>
+    </article>
+  </div>
 
-      </span>
+  <div class="row mx-auto index-card">
     
-  
-</span>
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/03/09/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/typora%E9%85%8D%E7%BD%AEpicgo%E5%9B%BE%E5%BA%8A/" target="_self">
+          
+        </a>
+      </h1>
 
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/09/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/typora%E9%85%8D%E7%BD%AEpicgo%E5%9B%BE%E5%BA%8A/" target="_self">
+        <div>
+          typora配置picgo命令行图床 通过node方式安装picgo   参见官网 https://support.typora.io/Upload-Image/#install-picgo-core-via-node-package-manager-requires-nodejs-runtime  123npm install picgo -g# oryarn global add picgo
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-09 13:35" pubdate>
+              2023-03-09
+            </time>
           </div>
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">#Java</a>
-            
-              <a href="/tags/JVM/">#JVM</a>
-            
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/10/26/Middleware/MessageQueue/RocketMq%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/" target="_self">
+          
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/26/Middleware/MessageQueue/RocketMq%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/" target="_self">
+        <div>
+          RocketMq技术内幕
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-26 10:46" pubdate>
+              2022-10-26
+            </time>
           </div>
+        
+        
         
       </div>
     </article>
@@ -731,137 +742,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Swagger/">#Swagger</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/07/12/Middleware/MessageQueue/RocketMq%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          RocketMq学习笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/07/12/Middleware/MessageQueue/RocketMq%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          RocketMq学习笔记Quick Start12345&gt; unzip rocketmq-all-4.9.4-source-release.zip &gt; cd rocketmq-all-4.9.4-source-release/ # 改完配置需要重新编译  &gt; mvn -Prelease-all -DskipTests clean install -U &gt; cd distri
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-07-12 13:46" pubdate>
-              2022-07-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/MQ/" class="category-chain-item">MQ</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/MQ/Middleware/" class="category-chain-item">Middleware</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Middleware/">#Middleware</a>
-            
-              <a href="/tags/RocketMq/">#RocketMq</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/06/30/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/ominiPlan%E4%BD%BF%E7%94%A8/" target="_self">
-          Docker网络
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/30/%E5%B7%A5%E5%85%B7/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/ominiPlan%E4%BD%BF%E7%94%A8/" target="_self">
-        <div>
-          分解任务 确定投入时间 定义资源并资源分配 确定任务的关联关系 自动排程并检查每项资源的任务是否存在并行  跟踪项目执行设置基线并跟踪计划执行 如果发现计划与实际偏差过大，则需要修改项目计划 设置当前的日期并自动排程 设置新的基线 如果在开发过程中，有人请假、出差或者被临时调到其他项目组，则需要进行任务拆分 如果想查看某个人的完成情况，则可以使用过滤功能 影响资源分级的因素 时限 安排与优先级
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-06-30 18:17" pubdate>
-              2022-06-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/OmniPlan/">#OmniPlan</a>
             
           </div>
         
