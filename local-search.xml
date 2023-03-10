@@ -461,13 +461,25 @@
   
   
   <entry>
-    <title></title>
+    <title>markdown图片图床迁移</title>
     <link href="/2023/03/09/%E5%B7%A5%E5%85%B7/markdown%E5%9B%BE%E7%89%87%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB/"/>
     <url>/2023/03/09/%E5%B7%A5%E5%85%B7/markdown%E5%9B%BE%E7%89%87%E5%9B%BE%E5%BA%8A%E8%BF%81%E7%A7%BB/</url>
     
-    <content type="html"><![CDATA[<h1 id="markdown图片图床迁移"><a href="#markdown图片图床迁移" class="headerlink" title="markdown图片图床迁移"></a>markdown图片图床迁移</h1><blockquote><p>由于新浪图床失效，需要将markdown图片迁移到其他图床</p></blockquote><ol><li><p>临时解决新浪图床失效</p><p>在https后加入cdn路径<code>cdn.cdnjson.com/</code></p><p>失效地址：<a href="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg">https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg</a></p><p>修复后地址：<a href="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg">https://cdn.cdnjson.com/tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg</a></p></li><li><p>批量修改markdown图片的图床</p><blockquote><p>参考picgo的插件<code>picgo-plugin-pic-migrater</code></p><p><a href="https://github.com/PicGo/picgo-plugin-pic-migrater/blob/master/README_CN.md">https://github.com/PicGo/picgo-plugin-pic-migrater/blob/master/README_CN.md</a></p></blockquote><p>安装插件</p><p><img src="https://s2.loli.net/2023/03/09/MW3Ymv6nsjLEr7P.png" alt="image-20230309184349369"></p></li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="markdown图片图床迁移"><a href="#markdown图片图床迁移" class="headerlink" title="markdown图片图床迁移"></a>markdown图片图床迁移</h1><blockquote><p>由于新浪图床失效，需要将markdown图片迁移到其他图床</p></blockquote><ol><li><p>临时解决新浪图床失效</p><p>在https后加入cdn路径<code>cdn.cdnjson.com/</code></p><p>失效地址：<a href="https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg">https://tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg</a></p><p>修复后地址：<a href="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg">https://cdn.cdnjson.com/tva1.sinaimg.cn/large/006y8mN6ly1h6vn6q61xyj317x0u00xj.jpg</a></p></li><li><p>批量修改markdown图片的图床</p><blockquote><p>参考picgo的插件<code>picgo-plugin-pic-migrater</code></p><p><a href="https://github.com/PicGo/picgo-plugin-pic-migrater/blob/master/README_CN.md">https://github.com/PicGo/picgo-plugin-pic-migrater/blob/master/README_CN.md</a></p></blockquote><p>安装插件</p><p><img src="https://s2.loli.net/2023/03/09/MW3Ymv6nsjLEr7P.png" alt="image-20230309184349369"></p></li></ol><p>​</p><p>插件配置<img src="https://s2.loli.net/2023/03/10/DchBqblmYI9evHg.png" alt="image-20230310113926284"></p><p><img src="https://s2.loli.net/2023/03/10/nl45jLw8x9uV2OI.png" alt="image-20230310114049127"></p><p>插件使用，对指定文件或文件夹进行批量迁移到smms图床</p><p><img src="https://s2.loli.net/2023/03/10/2YR4Q1v3qjxdXcn.png" alt="image-20230310114143841"></p>]]></content>
     
     
+    <categories>
+      
+      <category>Tools</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>picbed</tag>
+      
+    </tags>
     
   </entry>
   
